@@ -319,6 +319,8 @@ const CONTACT = {
   email: "yueeve69@163.com",
   phoneCN: "+86 156 6344 8888",
   phoneUK: "+44 7436 445151",
+  linkedin: "https://www.linkedin.com/in/yihan-yang-247a3232b",
+  linkedinLabel: "in/yihan-yang",
   cvEN: DOCS + "Eve_Yang_CV_EN.pdf",
   cvCN: DOCS + "Eve_Yang_CV_CN.pdf"
 };
@@ -449,6 +451,7 @@ function renderContact() {
   const t = UI[L()];
   document.getElementById("contact-methods").innerHTML = `
     <a href="mailto:${CONTACT.email}"><span class="label">${t.lblEmail}</span><span class="val">${CONTACT.email}</span></a>
+    <a href="${CONTACT.linkedin}" target="_blank" rel="noopener"><span class="label">LinkedIn</span><span class="val">${CONTACT.linkedinLabel}</span></a>
     <a href="tel:${CONTACT.phoneCN.replace(/\s/g, "")}"><span class="label">${t.lblPhoneCN}</span><span class="val">${CONTACT.phoneCN}</span></a>
     <a href="tel:${CONTACT.phoneUK.replace(/\s/g, "")}"><span class="label">${t.lblPhoneUK}</span><span class="val">${CONTACT.phoneUK}</span></a>`;
   document.getElementById("dl-row").innerHTML = `

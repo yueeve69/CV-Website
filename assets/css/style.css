@@ -176,6 +176,10 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
   padding: 12px 14px; text-align: left; }
 .metric b { display: block; font-size: 19px; color: var(--ink); letter-spacing: -.02em; }
 .metric span { font-size: 12px; color: var(--ink-faint); }
+.card-image { margin: 2px 0; }
+.card-image img { width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--line);
+  background: #fff; display: block; }
+.card-image figcaption { font-size: 12px; color: var(--ink-faint); margin-top: 7px; text-align: center; }
 .highlight-note {
   font-size: 13.5px; color: var(--accent-ink); background: var(--accent-soft);
   border-radius: 10px; padding: 9px 13px; font-weight: 600; display: flex; gap: 8px; align-items: center;

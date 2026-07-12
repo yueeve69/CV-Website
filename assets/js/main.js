@@ -92,7 +92,8 @@ const DATA = {
         { b: "500+", zh: "订单", en: "Orders" },
         { b: "≈£3,500", zh: "销售额", en: "Revenue" },
         { b: "≈20%", zh: "净利率", en: "Net margin" }
-      ]
+      ],
+      image: { src: "assets/img/amazon-product.jpg", zh: "店铺 Listing · 产品图（马卡龙色系宠物慢食垫）", en: "Store listing · product visual (macaron-tone pet slow-feeder mats)" }
     },
     {
       cats: ["ops"], featured: true,
@@ -405,6 +406,7 @@ function renderWork() {
     const metrics = w.metrics ? `<div class="metrics">${w.metrics.map(m =>
       `<div class="metric"><b>${m.b}</b><span>${m[L()]}</span></div>`).join("")}</div>` : "";
     const highlight = w.highlight ? `<div class="highlight-note">✦ ${w.highlight[L()]}</div>` : "";
+    const image = w.image ? `<figure class="card-image"><img src="${w.image.src}" alt="${w.image[L()]}" loading="lazy" /><figcaption>${w.image[L()]}</figcaption></figure>` : "";
     const links = w.links ? `<div class="card-links">${w.links.map(lk => {
       if (lk.drive) return `<a title="${u("viewDrive")}" href="https://drive.google.com/file/d/1YzPSOphTaAB-kbDiY272xLaE77fquLtd/view?usp=drive_link" target="_blank" rel="noopener">${lk[L()]}</a>`;
       const target = lk.href && lk.href.startsWith("http") ? ` target="_blank" rel="noopener"` : "";
@@ -416,7 +418,7 @@ function renderWork() {
       <h3>${d.title} ${feat}</h3>
       <div class="tag-row">${d.tags.map(x => `<span>${x}</span>`).join("")}</div>
       <p class="desc">${d.desc}</p>
-      ${metrics}${highlight}${links}
+      ${metrics}${image}${highlight}${links}
     </article>`;
   }).join("");
   observeReveals();

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>杨怿涵 Eve Yang · 作品集 Portfolio</title>
+  <meta name="description" content="杨怿涵 Eve Yang — 数字营销、用户研究与出海运营作品集。Digital marketing, user research & global operations portfolio." />
+  <meta name="author" content="Yihan (Eve) Yang" />
+  <meta property="og:title" content="杨怿涵 Eve Yang · Portfolio" />
+  <meta property="og:description" content="数字营销 · 用户研究 · 出海运营 | Digital Marketing · User Research · Global Ops" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%236d4bd6'/><text x='50' y='68' font-size='54' text-anchor='middle' fill='white' font-family='Georgia'>E</text></svg>" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand"><span class="dot"></span>Eve Yang</a>
+      <div class="nav-links" id="nav-links">
+        <a href="#about" id="nav-about">关于</a>
+        <a href="#capabilities" id="nav-cap">能力</a>
+        <a href="#work" id="nav-work">案例</a>
+        <a href="#research" id="nav-research">研究</a>
+        <a href="#contact" id="nav-contact">联系</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button data-lang="zh" class="active">中</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <button class="menu-btn" id="menu-btn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">杨怿涵 · Yihan Yang</span>
+        <h1>Eve <span class="en-name">Yang</span></h1>
+        <div class="role" id="hero-role">数字营销 · 用户研究 · 出海运营</div>
+        <p class="lede" id="hero-lede"></p>
+        <div class="hero-cta">
+          <a href="#work" class="btn" id="cta-work">查看案例</a>
+          <a href="#" class="btn ghost" id="cta-cv" download>下载简历</a>
+        </div>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="hero-photo">
+        <div class="frame"><img src="assets/img/eve.png" alt="杨怿涵 Eve Yang" /></div>
+        <div class="badge"><b id="hero-badge-val">2.8M+</b><span id="hero-badge-lbl">达人营销曝光</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <span class="eyebrow" id="about-eyebrow">关于我</span>
+      <h2 class="section-title" id="about-title"></h2>
+      <div class="about-grid" style="margin-top:32px">
+        <div>
+          <p id="about-p1"></p>
+          <p id="about-p2"></p>
+        </div>
+        <div class="about-facts" id="about-facts"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="wrap">
+      <span class="eyebrow" id="cap-eyebrow">我能做什么</span>
+      <h2 class="section-title" id="cap-title"></h2>
+      <p class="section-lead" id="cap-lead"></p>
+      <div class="cap-grid" id="cap-grid"></div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="work-head">
+        <div>
+          <span class="eyebrow" id="work-eyebrow">精选案例</span>
+          <h2 class="section-title" id="work-title"></h2>
+          <p class="section-lead" id="work-lead"></p>
+        </div>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="research" id="research">
+    <div class="wrap">
+      <span class="eyebrow" id="research-eyebrow">研究档案</span>
+      <h2 class="section-title" id="research-title"></h2>
+      <p class="section-lead" id="research-lead"></p>
+      <div class="research-list" id="research-list"></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="journey">
+    <div class="wrap">
+      <span class="eyebrow" id="timeline-eyebrow">经历</span>
+      <h2 class="section-title" id="timeline-title"></h2>
+      <div class="timeline" id="timeline-list"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2 class="section-title" id="contact-title"></h2>
+      <p class="contact-lead" id="contact-lead"></p>
+      <div class="contact-methods" id="contact-methods"></div>
+      <div class="dl-row" id="dl-row"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> 杨怿涵 Eve Yang · Built with care.</div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

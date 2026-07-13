@@ -457,7 +457,8 @@ const CONTACT = {
   linkedin: "https://www.linkedin.com/in/yihan-yang-247a3232b",
   linkedinLabel: "in/yihan-yang",
   cvEN: DOCS + "Eve_Yang_CV_EN.pdf",
-  cvCN: DOCS + "Eve_Yang_CV_CN.pdf"
+  cvCN: DOCS + "Eve_Yang_CV_CN.pdf",
+  portfolio: DOCS + "Eve_Yang_Portfolio.pdf"
 };
 
 /* ============================================================ */
@@ -721,7 +722,8 @@ function renderContact() {
     <a href="tel:${CONTACT.phoneUK.replace(/\s/g, "")}"><span class="label">${t.lblPhoneUK}</span><span class="val">${CONTACT.phoneUK}</span></a>`;
   document.getElementById("dl-row").innerHTML = `
     <a class="btn" href="${CONTACT.cvEN}" download>${t.dlEN}</a>
-    <a class="btn ghost" href="${CONTACT.cvCN}" download>${t.dlCN}</a>`;
+    <a class="btn ghost" href="${CONTACT.cvCN}" download>${t.dlCN}</a>
+    <a class="btn ghost" href="${CONTACT.portfolio}" download>${L() === "zh" ? "下载作品集 PDF" : "Download portfolio PDF"}</a>`;
 }
 
 /* ---- Number roll-up (counts up when scrolled into view) ---- */

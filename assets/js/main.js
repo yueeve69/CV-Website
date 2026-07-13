@@ -23,8 +23,8 @@ const DATA = {
 
   /* Education (LSE / KCL) */
   education: [
-    { date: "2026.09 – 2027.09", zh: { t: "伦敦政治经济学院 LSE", org: "性别、媒体与文化 · 文学硕士 (MA)", d: "相关方向：媒体与传播、数字文化、受众与身份研究。" },
-      en: { t: "London School of Economics (LSE)", org: "MA Gender, Media & Culture", d: "Focus areas: media & communication, digital culture, audience & identity." } },
+    { date: "2026.09 – 2027.09", zh: { t: "伦敦政治经济学院 LSE", org: "性别、媒体与文化 · 文学硕士 (MA)", d: "研究方向：性别研究、营销与广告中的性别再现、产品与用户体验中的性别刻板印象、女性 / 银发 / 多元人群消费者洞察、性别视角下的品牌传播与内容策略。" },
+      en: { t: "London School of Economics (LSE)", org: "MA Gender, Media & Culture", d: "Focus: gender studies, gender representation in marketing & advertising, gender stereotypes in product & UX, female/diverse consumer insight, gender-lens brand communication & content strategy." } },
     { date: "2023.09 – 2026.06", zh: { t: "伦敦国王学院 KCL", org: "数字媒体与文化 · 一等荣誉学士 (First-Class)", d: "相关课程：社交媒体、数字营销、品牌故事、人工智能、数字产品。" },
       en: { t: "King's College London (KCL)", org: "BA Digital Media & Culture · First-Class Honours", d: "Courses: social media, digital marketing, brand storytelling, AI, digital products." } }
   ],
@@ -253,13 +253,13 @@ const DATA = {
         intro: { zh: "带动用户自发玩梗、二创及高质量互动，实现用户自发传播。以下为部分爆款笔记与高赞热评。",
                  en: "Sparked memes, remixes and high-quality interaction for organic, user-led spread. A few viral notes and top comments below." },
         items: [
-          { cover: "assets/img/notes/cover-1.jpg", full: "assets/img/notes/full-1.jpg",
+          { full: "assets/img/notes/full-1.jpg",
             zh: "非要说我拉腿？承认别人优秀就那么难？", en: "\"So hard to admit others look good?\"",
             views: "120万", viewsEn: "1.2M", shares: "3,280", href: "http://xhslink.com/o/2umRm5qB0a2" },
-          { cover: "assets/img/notes/cover-2.jpg", full: "assets/img/notes/full-2.jpg",
+          { full: "assets/img/notes/full-2.jpg",
             zh: "中国人您好，我关注你们很久了", en: "\"Hello Chinese friends…\"",
-            views: "87.9万", viewsEn: "879k", shares: "4,395", href: "http://xhslink.com/o/8SICvD7QGsU" },
-          { cover: "assets/img/notes/cover-3.jpg", full: "assets/img/notes/full-3.jpg",
+            views: "87.9万", viewsEn: "879k", likes: "4万+", likesEn: "40k+", comments: "1万+", commentsEn: "10k+", shares: "4,395", href: "http://xhslink.com/o/8SICvD7QGsU" },
+          { full: "assets/img/notes/full-3.jpg",
             zh: "不小心把自己的照片发出来了喵", en: "\"Oops, posted my own photo\"",
             views: "5.7万", viewsEn: "57k", shares: "822", href: "http://xhslink.com/o/3nDtJpMrRgr" }
         ],
@@ -543,29 +543,24 @@ function renderCatDetail() {
 /* Xiaohongshu note gallery (two switchable layouts) */
 function renderNotes(n, lang) {
   const zh = lang === "zh";
-  const stat = (it) => `<span>👁 ${zh ? it.views : it.viewsEn}</span><span>↗ ${it.shares}</span>`;
+  const stat = (it) => {
+    const parts = [`👁 ${zh ? it.views : it.viewsEn}`];
+    if (it.likes) parts.push(`❤ ${zh ? it.likes : it.likesEn}`);
+    if (it.comments) parts.push(`💬 ${zh ? it.comments : it.commentsEn}`);
+    parts.push(`↗ ${it.shares}`);
+    return parts.map(x => `<span>${x}</span>`).join("");
+  };
   const cards = n.items.map(it => `
     <a class="note-card" href="${it.href}" target="_blank" rel="noopener">
-      <div class="note-cover"><img src="${it.cover}" loading="lazy" alt="" /><span class="note-badge">小红书</span></div>
+      <div class="note-cover"><img src="${it.full}" loading="lazy" alt="" /><span class="note-badge">小红书</span></div>
       <div class="note-meta"><div class="note-title">${zh ? it.zh : it.en}</div><div class="note-stats">${stat(it)}</div></div>
     </a>`).join("");
-  const feed = n.items.map(it => `
-    <figure class="note-feed-item">
-      <a href="${it.href}" target="_blank" rel="noopener"><img src="${it.full}" loading="lazy" alt="" /></a>
-      <figcaption><div class="note-title">${zh ? it.zh : it.en}</div><div class="note-stats">${stat(it)}</div></figcaption>
-    </figure>`).join("");
   const comments = n.comments.map(c => `
     <figure class="note-comment"><img src="${c.src}" loading="lazy" alt="" /><figcaption>${zh ? c.zh : c.en}</figcaption></figure>`).join("");
-  return `<div class="notes" data-mode="cards">
-    <div class="notes-head">
-      <p class="notes-intro">${zh ? n.intro.zh : n.intro.en}</p>
-      <div class="notes-toggle">
-        <button data-nm="cards" class="active">${zh ? "卡片墙 ⇆" : "Cards ⇆"}</button>
-        <button data-nm="feed">${zh ? "图文流 ⇊" : "Feed ⇊"}</button>
-      </div>
-    </div>
+  return `<div class="notes">
+    <p class="notes-intro">${zh ? n.intro.zh : n.intro.en}</p>
+    <div class="notes-hint">${zh ? "← 左右滑动查看更多 · 点击卡片跳转小红书" : "← Swipe for more · tap a card to open on RED"}</div>
     <div class="notes-cards">${cards}</div>
-    <div class="notes-feed">${feed}</div>
     <div class="notes-comments">
       <div class="notes-sub">${zh ? "用户自发玩梗 · 高赞热评" : "User-driven memes · top comments"}</div>
       <div class="notes-comments-row">${comments}</div>
@@ -669,11 +664,11 @@ function initBalloons() {
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.max(70, Math.min(150, Math.round(W / 12)));
+    const n = Math.max(90, Math.min(190, Math.round(W / 9)));
     items = Array.from({ length: n }, (_, i) => {
-      const r = 12 + (i * 41 % 13);
+      const r = 18 + (i * 37 % 20);           // bigger: 18–38px
       return { r, color: COLORS[i % COLORS.length], phase: (i * 1.3) % 6.28,
-        x: r + Math.random() * (W - 2 * r), y: H - r - (i % 16) * 26 - Math.random() * 30, vx: 0, vy: 0 };
+        x: r + Math.random() * (W - 2 * r), y: H - r - (i % 18) * 32 - Math.random() * 40, vx: 0, vy: 0 };
     });
   }
   function draw(b) {
@@ -740,7 +735,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentView === "contact" && balloons) balloons.start();
   }));
 
-  document.querySelectorAll("[data-view]").forEach(a => a.addEventListener("click", (e) => {
+  document.querySelectorAll("a[data-view]").forEach(a => a.addEventListener("click", (e) => {
     e.preventDefault(); showView(a.dataset.view, true);
     document.getElementById("nav-links").classList.remove("open");
   }));

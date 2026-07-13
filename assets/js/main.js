@@ -253,13 +253,13 @@ const DATA = {
         intro: { zh: "带动用户自发玩梗、二创及高质量互动，实现用户自发传播。以下为部分爆款笔记与高赞热评。",
                  en: "Sparked memes, remixes and high-quality interaction for organic, user-led spread. A few viral notes and top comments below." },
         items: [
-          { full: "assets/img/notes/full-1.jpg",
+          { full: "assets/img/notes/full-1.jpg", cover: "assets/img/notes/cover-1.jpg",
             zh: "非要说我拉腿？承认别人优秀就那么难？", en: "\"So hard to admit others look good?\"",
             views: "120万", viewsEn: "1.2M", likes: "2万+", likesEn: "20k+", comments: "1万2", commentsEn: "12k", shares: "3k+", href: "http://xhslink.com/o/3nDtJpMrRgr" },
-          { full: "assets/img/notes/full-2.jpg",
+          { full: "assets/img/notes/full-2.jpg", cover: "assets/img/notes/cover-2.jpg",
             zh: "中国人您好，我关注你们很久了", en: "\"Hello Chinese friends…\"",
             views: "87.9万", viewsEn: "879k", likes: "4万+", likesEn: "40k+", comments: "1万+", commentsEn: "10k+", shares: "4k+", href: "http://xhslink.com/o/2umRm5qB0a2" },
-          { full: "assets/img/notes/full-3.jpg",
+          { full: "assets/img/notes/full-3.jpg", cover: "assets/img/notes/cover-3.jpg",
             zh: "不小心把自己的照片发出来了喵", en: "\"Oops, posted my own photo\"",
             views: "5.7万", viewsEn: "57k", likes: "4k+", likesEn: "4k+", comments: "1k+", commentsEn: "1k+", shares: "800+", href: "http://xhslink.com/o/8SICvD7QGsU" }
         ],
@@ -569,6 +569,13 @@ function renderCatDetail() {
       ${caseStudy}${metrics}${image}${notes}${wechat}${links}
     </article>`;
   }).join("");
+  // stagger-reveal the cards + wire any coverflows
+  const cards = document.querySelectorAll("#cat-detail > .card");
+  cards.forEach((c, i) => {
+    c.style.animationDelay = (i * 80) + "ms"; c.classList.add("card-enter");
+    setTimeout(() => c.classList.remove("card-enter"), 700 + i * 80);
+  });
+  initCoverflows();
 }
 
 /* Xiaohongshu note gallery (two switchable layouts) */
@@ -581,22 +588,60 @@ function renderNotes(n, lang) {
     parts.push(`↗ ${it.shares}`);
     return parts.map(x => `<span>${x}</span>`).join("");
   };
-  const cards = n.items.map(it => `
-    <a class="note-card" href="${it.href}" target="_blank" rel="noopener">
-      <div class="note-cover"><img src="${it.full}" loading="lazy" alt="" /><span class="note-badge">小红书</span></div>
-      <div class="note-meta"><div class="note-title">${zh ? it.zh : it.en}</div><div class="note-stats">${stat(it)}</div></div>
+  const mid = Math.floor(n.items.length / 2);
+  const cards = n.items.map((it, i) => `
+    <a class="cf-card" data-i="${i}" href="${it.href}" target="_blank" rel="noopener" draggable="false">
+      <div class="note-cover"><img src="${it.cover || it.full}" loading="lazy" alt="" draggable="false" /><span class="note-badge">小红书</span></div>
+      <div class="cf-meta"><div class="note-title">${zh ? it.zh : it.en}</div><div class="note-stats">${stat(it)}</div></div>
     </a>`).join("");
+  const dots = n.items.map((_, i) => `<span class="cf-dot" data-i="${i}"></span>`).join("");
   const comments = n.comments.map(c => `
     <figure class="note-comment"><img src="${c.src}" loading="lazy" alt="" /><figcaption>${zh ? c.zh : c.en}</figcaption></figure>`).join("");
   return `<div class="notes">
     <p class="notes-intro">${zh ? n.intro.zh : n.intro.en}</p>
-    <div class="notes-hint">${zh ? "← 左右滑动查看更多 · 点击卡片跳转小红书" : "← Swipe for more · tap a card to open on RED"}</div>
-    <div class="notes-cards">${cards}</div>
+    <div class="notes-hint">${zh ? "← 左右滑动 / 点侧边卡片切换 · 点中间卡片跳转小红书" : "← Swipe or click a side card · tap the front card to open on RED"}</div>
+    <div class="coverflow" data-active="${mid}">
+      <div class="cf-stage">${cards}</div>
+      <button class="cf-nav cf-prev" aria-label="prev">‹</button>
+      <button class="cf-nav cf-next" aria-label="next">›</button>
+    </div>
+    <div class="cf-dots">${dots}</div>
     <div class="notes-comments">
       <div class="notes-sub">${zh ? "用户自发玩梗 · 高赞热评" : "User-driven memes · top comments"}</div>
       <div class="notes-comments-row">${comments}</div>
     </div>
   </div>`;
+}
+
+/* 3D coverflow driver for note carousels */
+function layoutCoverflow(cf) {
+  const cards = [...cf.querySelectorAll(".cf-card")];
+  const active = +cf.dataset.active;
+  cards.forEach((c, i) => {
+    const o = i - active, ax = Math.abs(o);
+    c.style.transform = `translateX(${o * 46}%) translateZ(${o === 0 ? 0 : -190}px) rotateY(${o * -27}deg) scale(${o === 0 ? 1 : 0.82})`;
+    c.style.zIndex = String(100 - ax);
+    c.style.opacity = ax > 2 ? "0" : "1";
+    c.classList.toggle("is-active", o === 0);
+  });
+  const dots = cf.parentElement.querySelectorAll(".cf-dot");
+  dots.forEach((d, i) => d.classList.toggle("active", i === active));
+}
+function initCoverflows() {
+  document.querySelectorAll(".coverflow:not([data-init])").forEach(cf => {
+    cf.dataset.init = "1";
+    const cards = [...cf.querySelectorAll(".cf-card")];
+    const set = (n) => { cf.dataset.active = Math.max(0, Math.min(cards.length - 1, n)); layoutCoverflow(cf); };
+    cf.querySelector(".cf-prev").addEventListener("click", e => { e.preventDefault(); set(+cf.dataset.active - 1); });
+    cf.querySelector(".cf-next").addEventListener("click", e => { e.preventDefault(); set(+cf.dataset.active + 1); });
+    cards.forEach((c, i) => c.addEventListener("click", e => { if (i !== +cf.dataset.active) { e.preventDefault(); set(i); } }));
+    const dotWrap = cf.parentElement.querySelector(".cf-dots");
+    if (dotWrap) dotWrap.querySelectorAll(".cf-dot").forEach((d, i) => d.addEventListener("click", () => set(i)));
+    let sx = null;
+    cf.addEventListener("pointerdown", e => { sx = e.clientX; });
+    cf.addEventListener("pointerup", e => { if (sx == null) return; const dx = e.clientX - sx; if (Math.abs(dx) > 45) set(+cf.dataset.active + (dx < 0 ? 1 : -1)); sx = null; });
+    layoutCoverflow(cf);
+  });
 }
 
 /* Case study with user personas (MarkSmarter) */

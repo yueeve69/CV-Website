@@ -246,10 +246,28 @@ const DATA = {
             ] },
       metrics: [
         { b: "8,000+", zh: "粉丝（2 个月）", en: "Followers (2 mo)" },
-        { b: "870k+", zh: "单条爆款观看", en: "Top post views" },
+        { b: "1.2M", zh: "单条最高浏览", en: "Top post views" },
         { b: "40k+", zh: "单条点赞", en: "Top post likes" }
-      ]
-      /* 小红书好笔记外链后续补充：add note links here later */
+      ],
+      notes: {
+        intro: { zh: "带动用户自发玩梗、二创及高质量互动，实现用户自发传播。以下为部分爆款笔记与高赞热评。",
+                 en: "Sparked memes, remixes and high-quality interaction for organic, user-led spread. A few viral notes and top comments below." },
+        items: [
+          { cover: "assets/img/notes/cover-1.jpg", full: "assets/img/notes/full-1.jpg",
+            zh: "非要说我拉腿？承认别人优秀就那么难？", en: "\"So hard to admit others look good?\"",
+            views: "120万", viewsEn: "1.2M", shares: "3,280", href: "http://xhslink.com/o/2umRm5qB0a2" },
+          { cover: "assets/img/notes/cover-2.jpg", full: "assets/img/notes/full-2.jpg",
+            zh: "中国人您好，我关注你们很久了", en: "\"Hello Chinese friends…\"",
+            views: "87.9万", viewsEn: "879k", shares: "4,395", href: "http://xhslink.com/o/8SICvD7QGsU" },
+          { cover: "assets/img/notes/cover-3.jpg", full: "assets/img/notes/full-3.jpg",
+            zh: "不小心把自己的照片发出来了喵", en: "\"Oops, posted my own photo\"",
+            views: "5.7万", viewsEn: "57k", shares: "822", href: "http://xhslink.com/o/3nDtJpMrRgr" }
+        ],
+        comments: [
+          { src: "assets/img/notes/comment-1.jpg", zh: "热评获 1.7万赞", en: "Top comment · 17k likes" },
+          { src: "assets/img/notes/comment-2.jpg", zh: "热评获 5万赞", en: "Top comment · 50k likes" }
+        ]
+      }
     },
 
     /* -------- Events & Community -------- */
@@ -287,7 +305,8 @@ const DATA = {
         { b: "500+", zh: "社群转化", en: "Community converts" },
         { b: "300+", zh: "统筹人数", en: "People coordinated" },
         { b: "0", zh: "执行失误", en: "Execution errors" }
-      ]
+      ],
+      links: [{ zh: "查看官媒公众号推文", en: "View WeChat article", href: "https://mp.weixin.qq.com/s/e3dX9PW8ayI7i_y8piqUVw" }]
     },
 
     /* -------- Product & Web / Game -------- */
@@ -510,14 +529,48 @@ function renderCatDetail() {
       const ext = lk.href && lk.href.startsWith("http") ? ` target="_blank" rel="noopener"` : "";
       return `<a href="${lk.href}"${ext}>${lk[L()]}</a>`;
     }).join("")}</div>` : "";
+    const notes = w.notes ? renderNotes(w.notes, L()) : "";
     return `<article class="card">
       <div class="card-top"><span class="kicker">${kind}${d.kicker}</span><span class="period">${d.period}</span></div>
       <h3>${d.title} ${feat}</h3>
       ${highlights}${summary}${context}
       ${duties}${results}
-      ${metrics}${image}${links}
+      ${metrics}${image}${notes}${links}
     </article>`;
   }).join("");
+}
+
+/* Xiaohongshu note gallery (two switchable layouts) */
+function renderNotes(n, lang) {
+  const zh = lang === "zh";
+  const stat = (it) => `<span>👁 ${zh ? it.views : it.viewsEn}</span><span>↗ ${it.shares}</span>`;
+  const cards = n.items.map(it => `
+    <a class="note-card" href="${it.href}" target="_blank" rel="noopener">
+      <div class="note-cover"><img src="${it.cover}" loading="lazy" alt="" /><span class="note-badge">小红书</span></div>
+      <div class="note-meta"><div class="note-title">${zh ? it.zh : it.en}</div><div class="note-stats">${stat(it)}</div></div>
+    </a>`).join("");
+  const feed = n.items.map(it => `
+    <figure class="note-feed-item">
+      <a href="${it.href}" target="_blank" rel="noopener"><img src="${it.full}" loading="lazy" alt="" /></a>
+      <figcaption><div class="note-title">${zh ? it.zh : it.en}</div><div class="note-stats">${stat(it)}</div></figcaption>
+    </figure>`).join("");
+  const comments = n.comments.map(c => `
+    <figure class="note-comment"><img src="${c.src}" loading="lazy" alt="" /><figcaption>${zh ? c.zh : c.en}</figcaption></figure>`).join("");
+  return `<div class="notes" data-mode="cards">
+    <div class="notes-head">
+      <p class="notes-intro">${zh ? n.intro.zh : n.intro.en}</p>
+      <div class="notes-toggle">
+        <button data-nm="cards" class="active">${zh ? "卡片墙 ⇆" : "Cards ⇆"}</button>
+        <button data-nm="feed">${zh ? "图文流 ⇊" : "Feed ⇊"}</button>
+      </div>
+    </div>
+    <div class="notes-cards">${cards}</div>
+    <div class="notes-feed">${feed}</div>
+    <div class="notes-comments">
+      <div class="notes-sub">${zh ? "用户自发玩梗 · 高赞热评" : "User-driven memes · top comments"}</div>
+      <div class="notes-comments-row">${comments}</div>
+    </div>
+  </div>`;
 }
 
 /* Honest data-viz for the Amazon store (from real figures) */
@@ -616,11 +669,11 @@ function initBalloons() {
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.max(12, Math.min(22, Math.round(W / 72)));
+    const n = Math.max(70, Math.min(150, Math.round(W / 12)));
     items = Array.from({ length: n }, (_, i) => {
-      const r = 15 + (i * 41 % 14);
+      const r = 12 + (i * 41 % 13);
       return { r, color: COLORS[i % COLORS.length], phase: (i * 1.3) % 6.28,
-        x: r + Math.random() * (W - 2 * r), y: H - r - (i % 4) * 26 - Math.random() * 20, vx: 0, vy: 0 };
+        x: r + Math.random() * (W - 2 * r), y: H - r - (i % 16) * 26 - Math.random() * 30, vx: 0, vy: 0 };
     });
   }
   function draw(b) {
@@ -695,6 +748,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuBtn = document.getElementById("menu-btn");
   const links = document.getElementById("nav-links");
   menuBtn.addEventListener("click", () => links.classList.toggle("open"));
+
+  // note gallery layout toggle
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-nm]");
+    if (!btn) return;
+    const box = btn.closest(".notes");
+    box.dataset.mode = btn.dataset.nm;
+    box.querySelectorAll("[data-nm]").forEach(b => b.classList.toggle("active", b === btn));
+  });
 
   // click ripple
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

@@ -492,6 +492,7 @@ function render() {
 
   document.querySelectorAll(".lang-toggle button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === L()));
+  initCounters();
 }
 
 function setText(id, txt) { const el = document.getElementById(id); if (el) el.textContent = txt; }
@@ -576,6 +577,7 @@ function renderCatDetail() {
     setTimeout(() => c.classList.remove("card-enter"), 700 + i * 80);
   });
   initCoverflows();
+  initCounters();
 }
 
 /* Xiaohongshu note gallery (two switchable layouts) */
@@ -722,6 +724,46 @@ function renderContact() {
     <a class="btn ghost" href="${CONTACT.cvCN}" download>${t.dlCN}</a>`;
 }
 
+/* ---- Number roll-up (counts up when scrolled into view) ---- */
+function countUp(el) {
+  const raw = (el.dataset.raw || el.textContent).trim();
+  el.dataset.raw = raw;
+  const m = raw.match(/^([^\d]*)([\d.,]+)(.*)$/);
+  if (!m) return;
+  const pre = m[1], numStr = m[2], suf = m[3];
+  const hasComma = numStr.includes(","), dec = (numStr.split(".")[1] || "").length;
+  const target = parseFloat(numStr.replace(/,/g, ""));
+  if (!isFinite(target)) return;
+  const dur = 1000, t0 = performance.now();
+  const fmt = v => { let s = dec ? v.toFixed(dec) : String(Math.round(v)); if (hasComma) s = Math.round(v).toLocaleString("en-US"); return pre + s + suf; };
+  (function stepf(now) { const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(target * e); if (p < 1) requestAnimationFrame(stepf); else el.textContent = raw; })(t0);
+}
+let counterIO;
+function initCounters() {
+  if (!("IntersectionObserver" in window)) return;
+  if (!counterIO) counterIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.dataset.counted = "1"; countUp(e.target); counterIO.unobserve(e.target); }
+  }), { threshold: 0.5 });
+  document.querySelectorAll(".metric b:not([data-counted]), .fact b:not([data-counted])").forEach(el => counterIO.observe(el));
+}
+
+/* ---- 3D hover tilt for experience cards ---- */
+function initCardTilt() {
+  const detail = document.getElementById("cat-detail");
+  if (!detail || window.matchMedia("(hover: none)").matches) return;
+  detail.addEventListener("mousemove", e => {
+    const card = e.target.closest(".card"); if (!card) return;
+    const r = card.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(1100px) rotateY(${px * 4.5}deg) rotateX(${-py * 4.5}deg) translateY(-3px)`;
+  });
+  detail.addEventListener("mouseout", e => {
+    const card = e.target.closest(".card");
+    if (card && !card.contains(e.relatedTarget)) card.style.transform = "";
+  });
+}
+
 /* ---- View router ---- */
 const VIEWS = ["home", "about", "education", "experience", "contact"];
 let petalFx = null;
@@ -831,6 +873,7 @@ function initPetals() {
 document.addEventListener("DOMContentLoaded", () => {
   render();
   initAvatar();
+  initCardTilt();
   petalFx = initPetals();
 
   document.querySelectorAll(".lang-toggle button").forEach(b => b.addEventListener("click", () => {

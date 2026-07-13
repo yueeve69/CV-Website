@@ -258,6 +258,7 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
 .note-card:hover .note-cover { transform: translateY(-4px); }
 .note-cover img { width: 100%; height: auto; display: block; }        /* full note image, uncropped */
 .note-badge { position: absolute; top: 10px; left: 10px; background: rgba(255,54,80,.95); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; letter-spacing: .02em; z-index: 2; }
+.note-badge.wx { background: rgba(7,193,96,.95); }
 .note-meta { padding: 11px 2px 0; }
 .note-title { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: 6px;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -270,6 +271,22 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
 .note-comment img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--line); box-shadow: var(--shadow); }  /* full comment image */
 .note-comment figcaption { font-size: 12.5px; color: var(--accent-ink); font-weight: 600; margin-top: 9px; text-align: center; }
 @media (max-width: 560px) { .note-card { flex-basis: 78vw; } .note-comment { flex-basis: 82vw; } }
+
+/* ---------- Case study / personas ---------- */
+.casestudy { margin: 4px 0 2px; }
+.cs-intro { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 16px; }
+.cs-sub { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+.persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.persona { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px 18px; }
+.persona-head { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
+.persona-avatar { font-size: 26px; line-height: 1; }
+.persona-id { flex: 1; min-width: 0; }
+.persona-name { font-size: 15.5px; font-weight: 700; color: var(--ink); }
+.persona-role { font-size: 12.5px; color: var(--ink-faint); }
+.persona-tag { font-size: 11px; font-weight: 700; color: var(--accent-ink); background: var(--accent-soft); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.persona ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; }
+.persona li { position: relative; padding-left: 16px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+.persona li::before { content: ""; position: absolute; left: 3px; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 
 /* ---------- Data-viz figure (Amazon) ---------- */
 .chart-figure { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px 20px; margin: 2px 0; }
@@ -307,6 +324,16 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
 }
 #avatar-follow.on { opacity: 1; }
 #avatar-follow img { width: 100%; height: auto; display: block; filter: drop-shadow(0 7px 10px rgba(25,23,19,.18)); }
+.avatar-bubble {
+  position: absolute; bottom: 100%; left: 50%; margin-bottom: 8px;
+  transform: translateX(-50%) scale(0); transform-origin: bottom center;
+  background: var(--ink); color: #fff; font-size: 12.5px; font-weight: 600; white-space: nowrap;
+  padding: 8px 13px; border-radius: 13px; box-shadow: var(--shadow); opacity: 0;
+  transition: transform .32s cubic-bezier(.2,1.5,.4,1), opacity .3s ease; pointer-events: none;
+}
+.avatar-bubble::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 6px solid transparent; border-top-color: var(--ink); }
+#avatar-follow.say .avatar-bubble { opacity: 1; transform: translateX(-50%) scale(1); }
 
 /* ---------- Responsibilities / Results ---------- */
 .dr { margin: 2px 0; }

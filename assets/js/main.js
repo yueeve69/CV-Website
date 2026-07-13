@@ -306,7 +306,16 @@ const DATA = {
         { b: "300+", zh: "统筹人数", en: "People coordinated" },
         { b: "0", zh: "执行失误", en: "Execution errors" }
       ],
-      links: [{ zh: "查看官媒公众号推文", en: "View WeChat article", href: "https://mp.weixin.qq.com/s/e3dX9PW8ayI7i_y8piqUVw" }]
+      wechat: {
+        intro: { zh: "负责官媒公众号「深视体育」的内容编辑与排版，以下为部分推文作品（点击可跳转阅读）。",
+                 en: "Edited and laid out content for the official WeChat account. A few articles below (tap to read)." },
+        items: [
+          { full: "assets/img/wechat/article-1.jpg", zh: "100天冲刺启动！全运火炬即将重磅首秀！", en: "\"100-day countdown: the National Games torch debut\"",
+            meta: "深视体育 · 2025.08", href: "https://mp.weixin.qq.com/s/dSRuz-QuXVR35JCJ7AnX0w" },
+          { full: "assets/img/wechat/article-2.jpg", zh: "八段锦专场 · 职场人午休静修充电术", en: "\"Baduanjin session · a lunchtime recharge for office workers\"",
+            meta: "深视体育 · 原创 · 2025.08", href: "https://mp.weixin.qq.com/s/e3dX9PW8ayI7i_y8piqUVw" }
+        ]
+      }
     },
 
     /* -------- Product & Web / Game -------- */
@@ -338,10 +347,29 @@ const DATA = {
             results: [
               "Completed a full user-centred design cycle with a working prototype and test findings"
             ] },
-      links: [
-        { zh: "项目文档 PDF", en: "Project write-up (PDF)", href: MARK_VIDEO },
-        { zh: "成品演示视频", en: "Prototype demo", href: MARK_VIDEO }
-      ]
+      caseStudy: {
+        intro: { zh: "项目「Writing in the Age of AI」聚焦生成式 AI 给高等教育评估带来的挑战。我们的方案 MarkSmarter 是一个与学校系统打通、同时服务学生与教授的平台：在 Turnitin 等工具基础上扩展多语言查重、AI 使用追踪，并引导学生「合理使用 AI」。我作为 team leader 负责任务分配、双端功能设计与用户 persona。",
+                 en: "\"Writing in the Age of AI\" tackles the challenges generative AI brings to higher-education assessment. Our solution, MarkSmarter, is a platform integrated with university systems for both students and professors: extending tools like Turnitin with multi-language plagiarism detection and AI-usage tracking, while guiding students toward appropriate AI use. As team leader I owned task allocation, dual-sided feature design and the user personas." },
+        personas: [
+          { emoji: "👩‍🏫", name: "Dr. Jane Smith", tag: { zh: "教授端", en: "Professor" },
+            role: { zh: "牛津大学 · 数字媒体高级讲师 · 45 岁", en: "Senior Lecturer in Digital Media, Oxford · 45" },
+            points: { zh: ["15 年高教经验，专注创新教学与课程设计",
+                            "痛点：AI 让评估变难，希望识别「思想抄袭」而不只是文字重复",
+                            "希望有更高效的系统，能总结作业、简化批改流程"],
+                      en: ["15 years in higher ed, focused on innovative teaching",
+                           "Pain: AI makes assessment hard; wants to catch 'thought plagiarism', not just text overlap",
+                           "Wants a more efficient system to summarise work and streamline marking"] } },
+          { emoji: "🧑‍🎓", name: "Lucas Carter", tag: { zh: "学生端", en: "Student" },
+            role: { zh: "华威大学 · 环境研究硕士 · 23 岁", en: "MSc Environmental Studies, Warwick · 23" },
+            points: { zh: ["希望产出高质量、原创的学术作品",
+                            "想用 AI 辅助写作与梳理思路，但担心影响原创性与学术诚信",
+                            "痛点：deadline 紧 + 完美主义易拖延；对论文结构不确定，想要反馈"],
+                      en: ["Wants high-quality, original academic work",
+                           "Wants AI to help with writing and structure, but worried about integrity",
+                           "Pain: tight deadlines + perfectionism; unsure about structure, wants feedback"] } }
+        ]
+      },
+      links: [{ zh: "成品演示视频", en: "Prototype demo", href: MARK_VIDEO }]
     },
     {
       cat: "product", kind: "project", secondary: true,
@@ -530,12 +558,14 @@ function renderCatDetail() {
       return `<a href="${lk.href}"${ext}>${lk[L()]}</a>`;
     }).join("")}</div>` : "";
     const notes = w.notes ? renderNotes(w.notes, L()) : "";
+    const wechat = w.wechat ? renderArticles(w.wechat, L()) : "";
+    const caseStudy = w.caseStudy ? renderCaseStudy(w.caseStudy, L()) : "";
     return `<article class="card">
       <div class="card-top"><span class="kicker">${kind}${d.kicker}</span><span class="period">${d.period}</span></div>
       <h3>${d.title} ${feat}</h3>
       ${highlights}${summary}${context}
       ${duties}${results}
-      ${metrics}${image}${notes}${links}
+      ${caseStudy}${metrics}${image}${notes}${wechat}${links}
     </article>`;
   }).join("");
 }
@@ -565,6 +595,39 @@ function renderNotes(n, lang) {
       <div class="notes-sub">${zh ? "用户自发玩梗 · 高赞热评" : "User-driven memes · top comments"}</div>
       <div class="notes-comments-row">${comments}</div>
     </div>
+  </div>`;
+}
+
+/* Case study with user personas (MarkSmarter) */
+function renderCaseStudy(cs, lang) {
+  const zh = lang === "zh";
+  const personas = cs.personas.map(p => `
+    <div class="persona">
+      <div class="persona-head">
+        <span class="persona-avatar">${p.emoji}</span>
+        <div class="persona-id"><div class="persona-name">${p.name}</div><div class="persona-role">${zh ? p.role.zh : p.role.en}</div></div>
+        <span class="persona-tag">${zh ? p.tag.zh : p.tag.en}</span>
+      </div>
+      <ul>${(zh ? p.points.zh : p.points.en).map(x => `<li>${x}</li>`).join("")}</ul>
+    </div>`).join("");
+  return `<div class="casestudy">
+    <p class="cs-intro">${zh ? cs.intro.zh : cs.intro.en}</p>
+    <div class="cs-sub">${zh ? "用户画像 Persona" : "User personas"}</div>
+    <div class="persona-grid">${personas}</div>
+  </div>`;
+}
+
+/* WeChat article gallery (card wall, like the notes) */
+function renderArticles(g, lang) {
+  const zh = lang === "zh";
+  const cards = g.items.map(it => `
+    <a class="note-card" href="${it.href}" target="_blank" rel="noopener">
+      <div class="note-cover"><img src="${it.full}" loading="lazy" alt="" /><span class="note-badge wx">公众号</span></div>
+      <div class="note-meta"><div class="note-title">${zh ? it.zh : it.en}</div><div class="note-stats"><span>${it.meta}</span></div></div>
+    </a>`).join("");
+  return `<div class="notes">
+    <p class="notes-intro">${zh ? g.intro.zh : g.intro.en}</p>
+    <div class="notes-cards">${cards}</div>
   </div>`;
 }
 
@@ -632,16 +695,26 @@ function initAvatar() {
   const el = document.getElementById("avatar-follow");
   if (!el) return;
   if (window.matchMedia("(hover: none)").matches || window.innerWidth <= 720) { el.style.display = "none"; return; }
-  el.innerHTML = `<img src="assets/img/avatar-char.png" alt="" />`;
+  const bubbleText = L() === "zh" ? "嗨！让我带你了解我 ✨" : "Hi! Let me show you around ✨";
+  el.innerHTML = `<div class="avatar-bubble">${bubbleText}</div><img src="assets/img/avatar-char.png" alt="" />`;
+  const img = el.querySelector("img");
   let mx = innerWidth / 2, my = innerHeight / 2, ax = mx, ay = my, shown = false, ph = 0;
-  addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; if (!shown) { shown = true; el.classList.add("on"); } });
+  addEventListener("mousemove", (e) => {
+    mx = e.clientX; my = e.clientY;
+    if (!shown) {
+      shown = true; el.classList.add("on");
+      el.classList.add("say");                         // greet once on first move
+      setTimeout(() => el.classList.remove("say"), 4500);
+    }
+  });
   document.addEventListener("mouseleave", () => { el.classList.remove("on"); shown = false; });
   (function loop() {
     const tx = mx + 30, ty = my + 22;
     ax += (tx - ax) * 0.12; ay += (ty - ay) * 0.12;
     ph += 0.06;
     const bob = Math.sin(ph) * 2.5, tilt = Math.sin(ph * 0.6) * 4, dir = (mx > ax ? 1 : -1);
-    el.style.transform = `translate(${ax}px, ${ay + bob}px) scaleX(${dir}) rotate(${tilt}deg)`;
+    el.style.transform = `translate(${ax}px, ${ay}px)`;                    // position only
+    img.style.transform = `translateY(${bob}px) scaleX(${dir}) rotate(${tilt}deg)`; // flip/bob only the image
     requestAnimationFrame(loop);
   })();
 }
@@ -668,8 +741,41 @@ function initBalloons() {
     items = Array.from({ length: n }, (_, i) => {
       const r = 18 + (i * 37 % 20);           // bigger: 18–38px
       return { r, color: COLORS[i % COLORS.length], phase: (i * 1.3) % 6.28,
-        x: r + Math.random() * (W - 2 * r), y: H - r - (i % 18) * 32 - Math.random() * 40, vx: 0, vy: 0 };
+        x: r + Math.random() * (W - 2 * r), y: H - r - (i % 18) * 32 - Math.random() * 40,
+        vx: 0, vy: 0, sleep: false, rest: 0 };
     });
+    // pre-settle into a static pile, then freeze so nothing keeps moving
+    for (let k = 0; k < 150; k++) step(false);
+    for (const b of items) { b.vx = 0; b.vy = 0; b.sleep = true; }
+  }
+  function step(interactive) {
+    const pvx = p.x - p.px, pvy = p.y - p.py; p.px = p.x; p.py = p.y;
+    for (const b of items) {
+      if (interactive && p.on) {                 // cursor "kicks" balloons awake
+        const dx = b.x - p.x, dy = b.y - p.y, d = Math.hypot(dx, dy), R = b.r + 72;
+        if (d < R) { const f = (R - d) / R, a = Math.atan2(dy, dx);
+          b.vx += Math.cos(a) * f * 2.8 + pvx * 0.16 * f;
+          b.vy += Math.sin(a) * f * 2.8 + pvy * 0.16 * f - f * 2.4;
+          b.sleep = false; b.rest = 0; }
+      }
+      if (b.sleep) continue;                      // settled balloons stay put
+      b.vy += G; b.vx *= AIR; b.vy *= AIR; b.phase += 0.03;
+      b.x += b.vx; b.y += b.vy;
+      if (b.x < b.r) { b.x = b.r; b.vx *= -0.5; }
+      if (b.x > W - b.r) { b.x = W - b.r; b.vx *= -0.5; }
+      if (b.y > H - b.r) { b.y = H - b.r; b.vy *= BOUNCE; b.vx *= 0.8; }
+      if (b.y < b.r) { b.y = b.r; b.vy *= -0.4; }
+      if (b.y > H - b.r - 1 && Math.abs(b.vx) < 0.25 && Math.abs(b.vy) < 0.5) {
+        if (++b.rest > 16) { b.sleep = true; b.vx = 0; b.vy = 0; }
+      } else b.rest = 0;
+    }
+    for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
+      const a = items[i], c = items[j];
+      if (a.sleep && c.sleep) continue;
+      const dx = c.x - a.x, dy = c.y - a.y, d = Math.hypot(dx, dy), mn = a.r + c.r - 2;
+      if (d > 0 && d < mn) { const o = (mn - d) / d * 0.5; a.x -= dx * o; a.y -= dy * o; c.x += dx * o; c.y += dy * o;
+        a.sleep = false; c.sleep = false; a.rest = 0; c.rest = 0; }
+    }
   }
   function draw(b) {
     ctx.save(); ctx.globalAlpha = 0.92;
@@ -686,25 +792,7 @@ function initBalloons() {
   }
   function tick() {
     ctx.clearRect(0, 0, W, H);
-    const pvx = p.x - p.px, pvy = p.y - p.py; p.px = p.x; p.py = p.y;
-    for (const b of items) {
-      b.vy += G; b.vx *= AIR; b.vy *= AIR; b.phase += 0.03;
-      if (p.on) {
-        const dx = b.x - p.x, dy = b.y - p.y, d = Math.hypot(dx, dy), R = b.r + 66;
-        if (d < R) { const f = (R - d) / R, a = Math.atan2(dy, dx);
-          b.vx += Math.cos(a) * f * 2.6 + pvx * 0.14 * f;
-          b.vy += Math.sin(a) * f * 2.6 + pvy * 0.14 * f - f * 2.2; }
-      }
-      b.x += b.vx; b.y += b.vy;
-      if (b.x < b.r) { b.x = b.r; b.vx *= -0.5; }
-      if (b.x > W - b.r) { b.x = W - b.r; b.vx *= -0.5; }
-      if (b.y > H - b.r) { b.y = H - b.r; b.vy *= BOUNCE; b.vx *= 0.82; if (Math.abs(b.vy) < 0.4) b.vy = 0; }
-      if (b.y < b.r) { b.y = b.r; b.vy *= -0.4; }
-    }
-    for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
-      const a = items[i], c = items[j], dx = c.x - a.x, dy = c.y - a.y, d = Math.hypot(dx, dy), mn = a.r + c.r - 2;
-      if (d > 0 && d < mn) { const o = (mn - d) / d * 0.5; a.x -= dx * o; a.y -= dy * o; c.x += dx * o; c.y += dy * o; }
-    }
+    step(true);
     items.forEach(draw);
     raf = requestAnimationFrame(tick);
   }

@@ -246,36 +246,19 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
 .contact-methods .val { font-size: 16px; font-weight: 600; color: var(--ink); }
 .dl-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-/* ---------- Lights-off flashlight mode ---------- */
-.lights-btn {
-  background: var(--card); border: 1px solid var(--line); border-radius: 999px;
-  width: 38px; height: 34px; cursor: pointer; font-size: 15px; line-height: 1;
-  transition: transform .16s ease, box-shadow .16s ease, background .2s;
+/* ---------- Cursor-following avatar ---------- */
+#avatar-follow {
+  position: fixed; top: 0; left: 0; width: 44px; height: 44px; z-index: 54;
+  pointer-events: none; opacity: 0; transition: opacity .35s ease; will-change: transform;
 }
-.lights-btn:hover { transform: scale(1.1) rotate(-8deg); box-shadow: var(--shadow); }
-#spotlight {
-  position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0;
-  transition: opacity .4s ease;
-  background: radial-gradient(circle 140px at var(--mx, 50%) var(--my, 50%),
-              rgba(10,8,22,0) 0, rgba(10,8,22,0) 96px, rgba(10,8,22,.88) 210px, rgba(6,4,16,.96) 100%);
+#avatar-follow.on { opacity: 1; }
+#avatar-follow img {
+  width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+  border: 2px solid #fff; box-shadow: 0 6px 16px -4px rgba(25,23,19,.35);
 }
-#lights-hint {
-  position: fixed; left: 50%; bottom: 34px; transform: translateX(-50%);
-  z-index: 61; pointer-events: none; opacity: 0; transition: opacity .4s ease;
-  color: #fff; font-size: 13.5px; letter-spacing: .04em; font-weight: 500;
-  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
-  padding: 8px 16px; border-radius: 999px; backdrop-filter: blur(4px);
-}
-body.lights-off #spotlight { opacity: 1; }
-body.lights-off #lights-hint { opacity: 1; }
-body.lights-off .lights-btn {
-  position: relative; z-index: 70; background: #fff8dc; border-color: #f5d76e;
-  box-shadow: 0 0 0 4px rgba(245,215,110,.35), 0 0 22px rgba(245,215,110,.6);
-}
-body.lights-off .nav { z-index: 65; }
 
 /* ---------- Interactive balloons (contact) ---------- */
-.contact { position: relative; overflow: hidden; }
+.contact { position: relative; overflow: hidden; min-height: 620px; padding-bottom: 150px; }
 #balloon-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .contact .wrap { position: relative; z-index: 1; }
 

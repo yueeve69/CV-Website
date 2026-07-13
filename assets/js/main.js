@@ -45,7 +45,7 @@ const DATA = {
             highlights: ["市场 & 竞品调研", "KOL/KOC 筛选策略", "达人建联 & 商务沟通", "数据化投放优化"] },
       en: { kicker: "Vertex Marketing · AI Influencer Ops (Intern)", period: "Apr – Jun 2026",
             title: "VOOPOO UK Influencer Campaign",
-            desc: "Ran VOOPOO's UK influencer marketing on TikTok, Instagram and Reddit. I did market and competitor research with Perplexity, Claude and Google Trends, AI-screened mid-tier creators out of 600+ KOLs/KOCs, and personally reached out to and negotiated with 120+ creators for reviews, UGC and short-video work — then adjusted the strategy on performance data.",
+            desc: "Ran VOOPOO's UK influencer marketing on TikTok, Instagram and Reddit. I did market and competitor research with Perplexity, Claude and Google Trends, AI-screened mid-tier creators out of 600+ KOLs/KOCs, and personally reached out to and negotiated with 120+ creators for reviews, UGC and short-video work, then adjusted the strategy on performance data.",
             highlights: ["Market & competitor research", "KOL/KOC screening", "Creator outreach & deals", "Data-driven optimisation"] },
       context: { zh: "VOOPOO 是主打海外市场的电子雾化品牌，主要客群在欧美，营销高度依赖海外社媒与达人内容。", en: "VOOPOO is an overseas-focused vaping/atomiser brand; its growth relies heavily on Western social media and creator content." },
       metrics: [
@@ -58,11 +58,11 @@ const DATA = {
       cat: "marketing", featured: true,
       zh: { kicker: "KCL · 数字营销", period: "2026",
             title: "Aesop 数字营销 Campaign",
-            desc: "为 Aesop 英国市场设计了一套数字营销方案，用社媒、达人和邮件三条线，明确每条线怎么做、优劣势和伦理边界。我把重点放在——怎么把前期调研的结论，变成品牌真正能落地、又不破坏调性的商业动作（非硬广、以价值内容切入）。",
+            desc: "为 Aesop 英国市场设计了一套数字营销方案，用社媒、达人和邮件三条线，明确每条线怎么做、优劣势和伦理边界。我把重点放在：怎么把前期调研的结论，变成品牌真正能落地、又不破坏调性的商业动作（非硬广、以价值内容切入）。",
             highlights: ["多渠道营销策略", "调研结论 → 商业建议", "品牌调性把控"] },
       en: { kicker: "KCL · Digital Marketing", period: "2026",
             title: "Aesop's Digital Marketing Campaign",
-            desc: "A digital marketing plan for Aesop UK across three lines — social, influencer and email — with the how, the trade-offs and the ethical limits of each. My focus was turning the earlier research into commercial actions the brand could actually run without breaking its tone (value-led, not hard-sell).",
+            desc: "A digital marketing plan for Aesop UK across three lines (social, influencer and email), with the how, the trade-offs and the ethical limits of each. My focus was turning the earlier research into commercial actions the brand could actually run without breaking its tone (value-led, not hard-sell).",
             highlights: ["Multi-channel strategy", "Research → commercial actions", "Brand-tone consistency"] },
       highlight: { zh: "老师建议突出的点：把调研结论落到商业应用建议", en: "Tutor's note built in: land the research as commercial recommendations" },
       links: [{ zh: "阅读方案 PDF", en: "Read campaign (PDF)", href: DOCS + "aesop-marketing-campaign.pdf" }]
@@ -74,8 +74,8 @@ const DATA = {
             desc: "Campaign 前的调研底稿。我用 PESTLE 和 SWOT 拆解 Aesop 在英国的处境，锁定 25–34 岁、年收入约 £30–40k 的都市年轻女性，从经济、社会、技术几个维度说清楚她们是谁、在意什么。",
             highlights: ["PESTLE / SWOT 框架", "目标受众定位", "用户画像 persona"] },
       en: { kicker: "KCL · Digital Marketing", period: "2026",
-            title: "Aesop UK — Audience & Situational Analysis",
-            desc: "The research groundwork behind the campaign. I used PESTLE and SWOT to break down Aesop's position in the UK and defined a target of urban women aged 25–34 earning ~£30–40k — who they are and what they care about, across economic, social and tech angles.",
+            title: "Aesop UK · Audience & Situational Analysis",
+            desc: "The research groundwork behind the campaign. I used PESTLE and SWOT to break down Aesop's position in the UK and defined a target of urban women aged 25–34 earning ~£30–40k, who they are and what they care about, across economic, social and tech angles.",
             highlights: ["PESTLE / SWOT", "Audience targeting", "User personas"] },
       links: [{ zh: "阅读报告 PDF", en: "Read report (PDF)", href: DOCS + "aesop-audience-analysis.pdf" }]
     },
@@ -108,14 +108,14 @@ const DATA = {
             highlights: ["内容选题 & 定位", "涨粉增长", "数据复盘", "品牌合作变现"] },
       en: { kicker: "Xiaohongshu (RED) · Account Ops", period: "Dec 2023 – Dec 2024",
             title: "Lifestyle Account 0 → 8,000+ Followers",
-            desc: "Grew a lifestyle account from zero to 8,000+ in two months through content selection, tag optimisation and riding trends, then monetised via brand deals (incl. Adidas). I review the data on every post — a few went viral, the top one hitting 870k views.",
+            desc: "Grew a lifestyle account from zero to 8,000+ in two months through content selection, tag optimisation and riding trends, then monetised via brand deals (incl. Adidas). I review the data on every post, and a few went viral, the top one hitting 870k views.",
             highlights: ["Content strategy", "Audience growth", "Data reviews", "Brand monetisation"] },
       metrics: [
         { b: "8,000+", zh: "粉丝（2 个月）", en: "Followers (2 mo)" },
         { b: "870k+", zh: "单条爆款观看", en: "Top post views" },
         { b: "40k+", zh: "单条点赞", en: "Top post likes" }
       ]
-      /* 好笔记外链后续补充 —— add note links here later */
+      /* 好笔记外链后续补充：add note links here later */
     },
     {
       cat: "content", featured: true, type: "proposal",
@@ -125,7 +125,7 @@ const DATA = {
             highlights: ["社区冷启动", "用户增长路径", "落地方案撰写"] },
       en: { kicker: "rednote · Community Activation Proposal", period: "2026",
             title: "Activating 100 London Creators in One Month",
-            desc: "A concrete plan I wrote for rednote's London community role. I paced it week by week: land the first few yeses, finish a starter guide, book the workshop space, spread through referrals and creator circles, then help a batch publish their first notes — aiming for 100 London creators in a month and a small community that keeps itself going.",
+            desc: "A concrete plan I wrote for rednote's London community role. I paced it week by week: land the first few yeses, finish a starter guide, book the workshop space, spread through referrals and creator circles, then help a batch publish their first notes, aiming for 100 London creators in a month and a small community that keeps itself going.",
             highlights: ["Community cold-start", "Growth roadmap", "Actionable planning"] },
       links: [{ zh: "查看方案 PDF", en: "View proposal (PDF)", href: DOCS + "rednote-community-activation-plan.pdf" }]
     },
@@ -139,7 +139,7 @@ const DATA = {
             highlights: ["活动统筹", "现场突发处理", "跨部门协调", "公众号内容运营"] },
       en: { kicker: "SZMG · Event & Sports Ops (Intern)", period: "Jul – Sep 2025",
             title: "15th National Games Opening Ceremony",
-            desc: "Worked on the ceremony's planning and run-of-show, coordinated 300+ people through three full rehearsals, and handled a guest's last-minute no-show live — the run went off with zero errors. I also ran the official WeChat content, converting 500+ attendees into the community via QR journeys.",
+            desc: "Worked on the ceremony's planning and run-of-show, coordinated 300+ people through three full rehearsals, and handled a guest's last-minute no-show live, and the run went off with zero errors. I also ran the official WeChat content, converting 500+ attendees into the community via QR journeys.",
             highlights: ["Event coordination", "Live problem-solving", "Cross-team work", "WeChat content"] },
       metrics: [
         { b: "300+", zh: "统筹人数", en: "People coordinated" },
@@ -153,11 +153,11 @@ const DATA = {
       cat: "product", featured: true,
       zh: { kicker: "MarkSmarter · Team Leader", period: "2024.10 – 2025.01",
             title: "AI 时代的学术写作 & 评估平台",
-            desc: "带队做的一个产品：一个面向学生和教授两端的 AI 辅助写作/评估平台。我是 leader，负责分工、设计两端的功能，还有做用户 persona（学生端、教授端各一套）。整个流程走了一遍——二次调研、想法评估、Figma 原型、再到用户测试迭代。",
+            desc: "带队做的一个产品：一个面向学生和教授两端的 AI 辅助写作/评估平台。我是 leader，负责分工、设计两端的功能，还有做用户 persona（学生端、教授端各一套）。整个流程完整走了一遍：二次调研、想法评估、Figma 原型，再到用户测试迭代。",
             highlights: ["用户调研 & Persona", "双端产品功能设计", "Figma 原型", "团队管理"] },
       en: { kicker: "MarkSmarter · Team Leader", period: "Oct 2024 – Jan 2025",
             title: "An AI-era Academic Writing & Assessment Platform",
-            desc: "A product I led: an AI-assisted writing/assessment platform for both students and professors. As team leader I owned task allocation, feature design for both sides, and the user personas (one each for students and professors) — running the whole loop from secondary research and idea evaluation to a Figma prototype and user-testing iterations.",
+            desc: "A product I led: an AI-assisted writing/assessment platform for both students and professors. As team leader I owned task allocation, feature design for both sides, and the user personas (one each for students and professors), running the whole loop from secondary research and idea evaluation to a Figma prototype and user-testing iterations.",
             highlights: ["User research & personas", "Dual-sided product design", "Figma prototyping", "Team leadership"] },
       links: [
         { zh: "项目文档 PDF", en: "Project write-up (PDF)", href: MARK_VIDEO },
@@ -168,11 +168,11 @@ const DATA = {
       cat: "product", secondary: true,
       zh: { kicker: "创意作品 · Twine 交互叙事", period: "2026.03 – 05",
             title: "In Pieces · 交互式故事",
-            desc: "用 Twine 做的一个交互式叙事作品，有多分支剧情、图像和音频——一个关于寻找和记忆的故事。从写剧本、设计分支到配图配音，自己搭出来的。",
+            desc: "用 Twine 做的一个交互式叙事作品，有多分支剧情、图像和音频，一个关于寻找和记忆的故事。从写剧本、设计分支到配图配音，自己搭出来的。",
             highlights: ["交互叙事设计", "多媒体制作（图/音）", "用户体验"] },
       en: { kicker: "Creative · Twine Interactive Fiction", period: "Mar – May 2026",
             title: "In Pieces · An Interactive Story",
-            desc: "An interactive narrative I built in Twine, with branching story, images and audio — a story about searching and memory. Wrote the script, designed the branches and put together the visuals and sound myself.",
+            desc: "An interactive narrative I built in Twine, with branching story, images and audio, a story about searching and memory. Wrote the script, designed the branches and put together the visuals and sound myself.",
             highlights: ["Interactive design", "Multimedia (image/audio)", "User experience"] },
       links: [
         { zh: "在线体验", en: "Play online", href: DOCS + "interactive-story-in-pieces.html" },
@@ -189,7 +189,7 @@ const DATA = {
             highlights: ["深度用户研究", "算法 & 身份分析", "质性研究方法"] },
       en: { kicker: "KCL · BA Dissertation", period: "2026",
             title: "Algorithms & the Construction of Maternal Identity on RED",
-            desc: "My KCL undergraduate dissertation, on how Xiaohongshu's algorithmic recommendation participates in constructing users' maternal identity — with literature review, methodology and qualitative analysis. Directly relevant to user research for mother-and-baby and content-platform roles.",
+            desc: "My KCL undergraduate dissertation, on how Xiaohongshu's algorithmic recommendation participates in constructing users' maternal identity, with literature review, methodology and qualitative analysis. Directly relevant to user research for mother-and-baby and content-platform roles.",
             highlights: ["Deep user research", "Algorithms & identity", "Qualitative methods"] },
       links: [{ zh: "阅读论文 PDF", en: "Read dissertation (PDF)", href: DOCS + "xiaohongshu-maternal-identity-research.pdf" }]
     },
@@ -201,7 +201,7 @@ const DATA = {
             highlights: ["性别视角研究", "亲密关系 & 同意"] },
       en: { kicker: "KCL · Digital Intimacy", period: "2026",
             title: "Gender & Digital Intimacy in Marriage",
-            desc: "A gendered study of digital intimacy, closeness and consent within marriage — relevant to user and content insight for sexual-wellness / femtech brands.",
+            desc: "A gendered study of digital intimacy, closeness and consent within marriage, relevant to user and content insight for sexual-wellness / femtech brands.",
             highlights: ["Gendered research", "Intimacy & consent"] },
       links: [{ zh: "阅读研究 PDF", en: "Read research (PDF)", href: DOCS + "marital-sexting-research.pdf" }]
     },
@@ -213,7 +213,7 @@ const DATA = {
             highlights: ["亚文化研究", "AI 情感产品洞察"] },
       en: { kicker: "KCL · Digital Intimacy", period: "2026",
             title: "AI Companions & Intimacy in Online Subcultures",
-            desc: "How AI companion products reshape intimacy and needs for specific communities — insight for companionship and intimate-product categories.",
+            desc: "How AI companion products reshape intimacy and needs for specific communities, and insight for companionship and intimate-product categories.",
             highlights: ["Subculture research", "AI companion insight"] },
       links: [{ zh: "阅读研究 PDF", en: "Read research (PDF)", href: DOCS + "ai-sexbot-intimacy-research.pdf" }]
     },
@@ -233,11 +233,11 @@ const DATA = {
       cat: "research", secondary: true,
       zh: { kicker: "创意写作 · 哲学向科幻", period: "2026",
             title: "短篇小说 · 关于妈妈的记忆",
-            desc: "一篇哲学视角的科幻短篇，写「用 AI 复现逝去的亲人」——记忆、真实和情感的边界在哪。",
+            desc: "一篇哲学视角的科幻短篇，写「用 AI 复现逝去的亲人」，探讨记忆、真实和情感的边界在哪。",
             highlights: ["创意写作", "思辨 & 伦理"] },
       en: { kicker: "Creative Writing · Speculative Fiction", period: "2026",
             title: "Short Story · A Memory of Mum",
-            desc: "A philosophically-grounded speculative short story about recreating a lost parent with AI — where memory, authenticity and feeling end.",
+            desc: "A philosophically-grounded speculative short story about recreating a lost parent with AI, and where memory, authenticity and feeling end.",
             highlights: ["Creative writing", "Critical thinking"] },
       links: [{ zh: "阅读全文 PDF", en: "Read story (PDF)", href: DOCS + "fiction-a-memory-of-mum.pdf" }]
     }
@@ -295,33 +295,33 @@ const UI = {
     navAbout: "关于", navExp: "经历", navContact: "联系",
     heroRole: "帮品牌把生意做到海外",
     heroSub: "达人营销 · 跨境电商 · 内容增长",
-    heroLede: "达人营销、跨境电商、内容运营——这三件事我都亲手做过，也都做出了结果：280 万+ 曝光、500+ 订单、两个月把一个账号从 0 带到 8,000+ 粉。KCL 数字媒体一等毕业，下一站 LSE。",
-    ctaWork: "看我做过什么", ctaCV: "下载简历",
-    aboutEyebrow: "关于我", aboutTitle: "把海外项目独立做出结果的人",
-    aboutP1: "我是杨怿涵。这两年我没只待在课堂里：在 Vertex，我操盘 VOOPOO 的英国达人营销；我自己开了一家 Amazon 英国店，从选品、定价到广告全都一手做；还把一个小红书账号从 0 带到 8,000+ 粉，跑出过 87 万观看的爆款。",
-    aboutP2: "我做事的路子很清楚——先用数据和 AI 工具把市场和用户摸透，再动手，一个人也能从头扛到尾。在团队里，我通常是那个定方向、拉着大家往前跑的人（是的，标准 ENTJ）。英语几乎是我的第二母语，所以「出海」是我最想去的方向。",
-    expEyebrow: "经历 & 作品", expTitle: "我做过什么 · 能为你做什么",
-    expLead: "下面每一段，都是我真刀真枪做出来、也拿到过结果的。挑一类，点开看我具体怎么做的。",
+    heroLede: "达人营销、跨境电商、内容运营，这几件事我都上手做过，也拿到了一些还算拿得出手的结果：280 万曝光、500 多订单、两个月把一个账号从 0 做到 8,000 多粉。KCL 数字媒体一等毕业，接下来去 LSE。",
+    ctaWork: "看我做过的事", ctaCV: "下载简历",
+    aboutEyebrow: "关于我", aboutTitle: "一个愿意把海外项目从头做到尾的人",
+    aboutP1: "我是杨怿涵。这两年我尽量多去实践：在 Vertex 负责 VOOPOO 的英国达人营销；自己开了一家 Amazon 英国店，从选品、定价到广告都一点点摸索着做；也把一个小红书账号从 0 做到 8,000 多粉，其中一条内容有幸拿到了 87 万观看。",
+    aboutP2: "我做事的习惯，是先用数据和 AI 工具把市场和用户看清楚，再动手，一个人也能从头跟到尾。在团队里，我常常是牵头的那一个（MBTI 是 ENTJ）。英语算是我的第二母语，所以最希望能做出海方向的工作。",
+    expEyebrow: "经历 & 作品", expTitle: "我做过的一些事",
+    expLead: "下面每一段，都是我实际做过、也拿到过一些结果的。选一类，点开看具体怎么做的。",
     timelineEyebrow: "时间线", timelineTitle: "教育 · 实习 · 项目",
-    contactTitle: "聊聊？我随时都在",
-    contactLead: "如果你需要一个能独立把海外项目做起来、还能带着团队往前跑的人——给我发条消息就好。",
+    contactTitle: "欢迎随时找我聊聊",
+    contactLead: "如果你正好在找一个能沉下心把海外项目做起来的人，给我发条消息就好，我很期待和你聊聊。",
     lblEmail: "邮箱", lblPhoneCN: "电话（中国）", lblPhoneUK: "电话（英国）",
     dlEN: "下载简历（英文）", dlCN: "下载简历（中文）"
   },
   en: {
     navAbout: "About", navExp: "Experience", navContact: "Contact",
-    heroRole: "I help brands take their business overseas",
+    heroRole: "Helping brands take their business overseas",
     heroSub: "Influencer marketing · Cross-border e-commerce · Content growth",
-    heroLede: "Influencer marketing, cross-border e-commerce, content operations — I've done all three myself, and each one delivered: 2.8M+ impressions, 500+ orders, one account grown from 0 to 8,000+ in two months. First-Class in Digital Media from KCL; LSE next.",
+    heroLede: "Influencer marketing, cross-border e-commerce, content operations. I've had the chance to work on all three, and they turned out some results I'm glad about: 2.8M impressions, 500+ orders, one account grown from 0 to 8,000+ in two months. First-Class in Digital Media from KCL, and LSE next.",
     ctaWork: "See what I've done", ctaCV: "Download CV",
-    aboutEyebrow: "About", aboutTitle: "Someone who runs an overseas project and brings back results",
-    aboutP1: "I'm Eve Yang. These two years I didn't just sit in lectures: at Vertex I ran VOOPOO's UK influencer marketing; I opened my own Amazon UK store and did everything from sourcing and pricing to ads; and I grew a Xiaohongshu account from 0 to 8,000+, with a top post at 870k views.",
-    aboutP2: "The way I work is clear — understand the market and users first with data and AI tools, then act, and I can carry it end to end on my own. On a team I'm usually the one setting the direction and pulling everyone forward (yes, a textbook ENTJ). My English is near-native, so going global is exactly where I want to be.",
-    expEyebrow: "Experience & Work", expTitle: "What I've done · what I can do for you",
-    expLead: "Every one below is real, hands-on work that got results. Pick a category and open it to see exactly how I did it.",
+    aboutEyebrow: "About", aboutTitle: "Someone happy to see an overseas project through, start to finish",
+    aboutP1: "I'm Eve Yang. These two years I've tried to get as much hands-on practice as I could: at Vertex I ran VOOPOO's UK influencer marketing; I opened my own Amazon UK store and worked out sourcing, pricing and ads myself; and I grew a Xiaohongshu account from 0 to 8,000+, with one post lucky enough to reach 870k views.",
+    aboutP2: "The way I work is to understand the market and users with data and AI tools first, then act, and I can see it through end to end on my own. On a team I'm often the one who takes the lead (my MBTI is ENTJ). My English is close to native, so overseas-facing roles are what I'd love most.",
+    expEyebrow: "Experience & Work", expTitle: "A few things I've worked on",
+    expLead: "Each of these is real work I did and got some results from. Pick a category and open it to see how.",
     timelineEyebrow: "Timeline", timelineTitle: "Education · Internships · Projects",
-    contactTitle: "Let's talk — I'm around",
-    contactLead: "If you need someone who can run an overseas project solo and pull a team along, just send me a message.",
+    contactTitle: "Happy to chat anytime",
+    contactLead: "If you happen to be looking for someone who can quietly get an overseas project off the ground, just send me a message. I'd love to talk.",
     lblEmail: "Email", lblPhoneCN: "Phone (China)", lblPhoneUK: "Phone (UK)",
     dlEN: "Download CV (EN)", dlCN: "Download CV (中文)"
   }
@@ -469,88 +469,114 @@ function observeReveals() {
     }), 1200);
 }
 
-/* ---- Lights-off flashlight mode ---- */
-function initLights() {
-  const btn = document.getElementById("lights-btn");
-  const hint = document.getElementById("lights-hint");
-  if (!btn) return;
-  const setHint = () => { hint.textContent = L() === "zh" ? "移动鼠标照亮 · 再点灯泡开灯" : "Move your cursor to light the way · click the bulb again"; };
-  const move = (e) => {
-    const x = e.touches ? e.touches[0].clientX : e.clientX;
-    const y = e.touches ? e.touches[0].clientY : e.clientY;
-    document.documentElement.style.setProperty("--mx", x + "px");
-    document.documentElement.style.setProperty("--my", y + "px");
-  };
-  btn.addEventListener("click", () => {
-    const on = document.body.classList.toggle("lights-off");
-    btn.textContent = on ? "🔦" : "💡";
-    if (on) { setHint(); window.addEventListener("mousemove", move); window.addEventListener("touchmove", move, { passive: true }); }
-    else { window.removeEventListener("mousemove", move); window.removeEventListener("touchmove", move); }
+/* ---- Cursor-following avatar ---- */
+function initAvatar() {
+  const el = document.getElementById("avatar-follow");
+  if (!el) return;
+  // skip on touch / small screens (no hovering cursor)
+  if (window.matchMedia("(hover: none)").matches || window.innerWidth <= 720) { el.style.display = "none"; return; }
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let ax = mx, ay = my, shown = false, tphase = 0;
+  window.addEventListener("mousemove", (e) => {
+    mx = e.clientX; my = e.clientY;
+    if (!shown) { shown = true; el.classList.add("on"); }
   });
+  document.addEventListener("mouseleave", () => { el.classList.remove("on"); shown = false; });
+  (function loop() {
+    // trail behind + slightly below-right of the cursor so it never blocks what you read
+    const tx = mx + 26, ty = my + 30;
+    ax += (tx - ax) * 0.14; ay += (ty - ay) * 0.14;
+    tphase += 0.05;
+    const bob = Math.sin(tphase) * 2.5, tilt = Math.sin(tphase * 0.7) * 5;
+    el.style.transform = `translate(${ax}px, ${ay + bob}px) rotate(${tilt}deg)`;
+    requestAnimationFrame(loop);
+  })();
 }
 
-/* ---- Interactive balloons (contact section) ---- */
+/* ---- Interactive balloons piled in the contact section ---- */
 function initBalloons() {
   const canvas = document.getElementById("balloon-canvas");
   const section = document.getElementById("contact");
   if (!canvas || !section) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const ctx = canvas.getContext("2d");
-  const COLORS = ["#c9b6f5", "#f5b6d0", "#f5d99b", "#a9e5c8", "#b6d4f5"];
+  const COLORS = ["#c9b6f5", "#f5b6d0", "#f5d99b", "#a9e5c8", "#b6d4f5", "#f5c4a1"];
   let W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
-  let balloons = [], pointer = { x: -999, y: -999, on: false }, raf = null, t = 0;
+  let balloons = [], raf = null;
+  const pointer = { x: -999, y: -999, px: -999, py: -999, on: false };
+  const G = 0.14, FLOOR_BOUNCE = -0.34, AIR = 0.992;
 
   function resize() {
     W = section.clientWidth; H = section.clientHeight;
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.max(6, Math.min(12, Math.round(W / 130)));
-    balloons = Array.from({ length: n }, (_, i) => spawn(i, true));
-  }
-  function spawn(i, initial) {
-    const r = 16 + (i * 37 % 16);
-    return { baseX: 24 + ((i * 97) % Math.max(1, W - 48)), amp: 8 + (i * 13 % 16),
-      phase: (i * 1.7) % 6.28, r, x: 0,
-      y: initial ? (H * (i / 10) + (i * 53 % 80)) : H + r + 30,
-      vy: 0.25 + (i % 5) * 0.09, color: COLORS[i % COLORS.length] };
+    const n = Math.max(12, Math.min(22, Math.round(W / 72)));
+    balloons = Array.from({ length: n }, (_, i) => {
+      const r = 15 + (i * 41 % 14);
+      return { r, color: COLORS[i % COLORS.length], phase: (i * 1.3) % 6.28,
+        x: r + Math.random() * (W - 2 * r),
+        y: H - r - (i % 4) * 26 - Math.random() * 20,   // start piled at the bottom
+        vx: 0, vy: 0 };
+    });
   }
   function draw(b) {
-    ctx.save(); ctx.globalAlpha = 0.9;
-    ctx.strokeStyle = "rgba(120,110,140,0.3)"; ctx.lineWidth = 1;
+    ctx.save(); ctx.globalAlpha = 0.92;
+    ctx.strokeStyle = "rgba(120,110,140,0.28)"; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(b.x, b.y + b.r);
-    ctx.quadraticCurveTo(b.x + Math.sin(b.phase) * 6, b.y + b.r + 16, b.x, b.y + b.r + 28); ctx.stroke();
+    ctx.quadraticCurveTo(b.x + Math.sin(b.phase) * 5, b.y + b.r + 14, b.x + Math.sin(b.phase) * 2, b.y + b.r + 26); ctx.stroke();
     ctx.fillStyle = b.color;
     ctx.beginPath(); ctx.ellipse(b.x, b.y, b.r * 0.82, b.r, 0, 0, Math.PI * 2); ctx.fill();
-    ctx.globalAlpha = 0.4; ctx.fillStyle = "#fff";
+    ctx.globalAlpha = 0.42; ctx.fillStyle = "#fff";
     ctx.beginPath(); ctx.ellipse(b.x - b.r * 0.28, b.y - b.r * 0.34, b.r * 0.15, b.r * 0.25, -0.4, 0, Math.PI * 2); ctx.fill();
-    ctx.globalAlpha = 0.9; ctx.fillStyle = b.color;
+    ctx.globalAlpha = 0.92; ctx.fillStyle = b.color;
     ctx.beginPath(); ctx.moveTo(b.x - 3, b.y + b.r); ctx.lineTo(b.x + 3, b.y + b.r); ctx.lineTo(b.x, b.y + b.r + 5); ctx.closePath(); ctx.fill();
     ctx.restore();
   }
   function tick() {
-    ctx.clearRect(0, 0, W, H); t += 1;
+    ctx.clearRect(0, 0, W, H);
+    const pvx = pointer.x - pointer.px, pvy = pointer.y - pointer.py;
+    pointer.px = pointer.x; pointer.py = pointer.y;
     for (const b of balloons) {
-      b.y -= b.vy; b.phase += 0.012;
-      b.x = b.baseX + Math.sin(b.phase) * b.amp;
+      b.vy += G; b.vx *= AIR; b.vy *= AIR; b.phase += 0.03;
+      // cursor kick: pushes balloons away and upward, harder with faster swipes
       if (pointer.on) {
         const dx = b.x - pointer.x, dy = b.y - pointer.y, d = Math.hypot(dx, dy);
-        if (d < 130 && d > 0.1) { const f = (130 - d) / 130; const a = Math.atan2(dy, dx);
-          b.baseX += Math.cos(a) * f * 3.4; b.y += Math.sin(a) * f * 3.4; }
+        const R = b.r + 66;
+        if (d < R) { const f = (R - d) / R, a = Math.atan2(dy, dx);
+          b.vx += Math.cos(a) * f * 2.6 + pvx * 0.14 * f;
+          b.vy += Math.sin(a) * f * 2.6 + pvy * 0.14 * f - f * 2.2; // upward bias = "kick up"
+        }
       }
-      b.baseX = Math.max(20, Math.min(W - 20, b.baseX));
-      if (b.y < -b.r - 34) Object.assign(b, spawn((Math.random() * 1000) | 0, false));
+      b.x += b.vx; b.y += b.vy;
+      // walls
+      if (b.x < b.r) { b.x = b.r; b.vx *= -0.5; }
+      if (b.x > W - b.r) { b.x = W - b.r; b.vx *= -0.5; }
+      // floor: settle into a pile
+      if (b.y > H - b.r) { b.y = H - b.r; b.vy *= FLOOR_BOUNCE; b.vx *= 0.82; if (Math.abs(b.vy) < 0.4) b.vy = 0; }
+      if (b.y < b.r) { b.y = b.r; b.vy *= -0.4; }
+    }
+    // light separation so the pile looks tidy
+    for (let i = 0; i < balloons.length; i++) for (let j = i + 1; j < balloons.length; j++) {
+      const a = balloons[i], c = balloons[j];
+      const dx = c.x - a.x, dy = c.y - a.y, d = Math.hypot(dx, dy), min = a.r + c.r - 2;
+      if (d > 0 && d < min) { const o = (min - d) / d * 0.5, ox = dx * o, oy = dy * o;
+        a.x -= ox; a.y -= oy; c.x += ox; c.y += oy; }
     }
     balloons.forEach(draw);
     raf = requestAnimationFrame(tick);
   }
-  section.addEventListener("mousemove", (e) => {
+  const setPtr = (e) => {
     const rect = section.getBoundingClientRect();
-    pointer.x = e.clientX - rect.left; pointer.y = e.clientY - rect.top; pointer.on = true;
-  });
+    const cx = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const cy = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+    if (!pointer.on) { pointer.px = cx; pointer.py = cy; }
+    pointer.x = cx; pointer.y = cy; pointer.on = true;
+  };
+  section.addEventListener("mousemove", setPtr);
+  section.addEventListener("touchmove", setPtr, { passive: true });
   section.addEventListener("mouseleave", () => { pointer.on = false; });
   window.addEventListener("resize", () => { dpr = Math.min(window.devicePixelRatio || 1, 2); resize(); });
-  // start only when section near viewport (perf)
   const io2 = new IntersectionObserver((es) => es.forEach(e => {
     if (e.isIntersecting) { if (!raf) { resize(); tick(); } }
     else if (raf) { cancelAnimationFrame(raf); raf = null; }
@@ -571,7 +597,7 @@ document.addEventListener("DOMContentLoaded", () => {
   menuBtn.addEventListener("click", () => links.classList.toggle("open"));
   links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => links.classList.remove("open")));
 
-  initLights();
+  initAvatar();
   initBalloons();
 
   // Playful click ripple on interactive elements

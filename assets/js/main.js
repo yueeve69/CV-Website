@@ -209,11 +209,7 @@ const DATA = {
               "500+ orders and about £3,500 in revenue",
               "Optimised ads and conversion with AI-assisted analysis for a project net margin of about 20%"
             ] },
-      metrics: [
-        { b: "500+", zh: "订单", en: "Orders" },
-        { b: "≈£3,500", zh: "销售额", en: "Revenue" },
-        { b: "≈20%", zh: "净利率", en: "Net margin" }
-      ],
+      chart: "amazon",
       image: { src: "assets/img/amazon-product.jpg", zh: "我运营的产品：马卡龙色系宠物慢食垫（真实产品图）", en: "The product I ran: macaron-tone pet slow-feeder mats (real product)" }
     },
 
@@ -231,7 +227,8 @@ const DATA = {
             ],
             results: [
               "两个月涨粉至 8,000+",
-              "打造多条爆款，单条最高 87 万观看、4 万+ 点赞、1 万+ 评论"
+              "打造多条爆款，单条最高 87 万观看、4 万+ 点赞、1 万+ 评论",
+              "带动用户自发玩梗、二创及高质量互动，实现用户自发传播"
             ] },
       en: { kicker: "Xiaohongshu (RED) · Account Ops", period: "Dec 2023 – Dec 2024",
             title: "Lifestyle Account 0 → 8,000+ Followers",
@@ -244,7 +241,8 @@ const DATA = {
             ],
             results: [
               "Grew to 8,000+ followers in two months",
-              "Produced several viral posts, the top one at 870k views, 40k+ likes, 10k+ comments"
+              "Produced several viral posts, the top one at 870k views, 40k+ likes, 10k+ comments",
+              "Drove memes, remixes and high-quality interaction, sparking organic user-led spread"
             ] },
       metrics: [
         { b: "8,000+", zh: "粉丝（2 个月）", en: "Followers (2 mo)" },
@@ -505,7 +503,8 @@ function renderCatDetail() {
     const context = w.context ? `<div class="context-note">ℹ︎ ${w.context[L()]}</div>` : "";
     const duties = d.duties ? `<div class="dr"><span class="dr-label">${t.dutiesLabel}</span><ul>${d.duties.map(x => `<li>${x}</li>`).join("")}</ul></div>` : "";
     const results = d.results ? `<div class="dr dr-results"><span class="dr-label">${t.resultsLabel}</span><ul>${d.results.map(x => `<li>${x}</li>`).join("")}</ul></div>` : "";
-    const metrics = w.metrics ? `<div class="metrics">${w.metrics.map(m => `<div class="metric"><b>${m.b}</b><span>${m[L()]}</span></div>`).join("")}</div>` : "";
+    const metrics = w.chart === "amazon" ? amazonChart(L())
+      : (w.metrics ? `<div class="metrics">${w.metrics.map(m => `<div class="metric"><b>${m.b}</b><span>${m[L()]}</span></div>`).join("")}</div>` : "");
     const image = w.image ? `<figure class="card-image"><img src="${w.image.src}" alt="${w.image[L()]}" loading="lazy" /><figcaption>${w.image[L()]}</figcaption></figure>` : "";
     const links = w.links ? `<div class="card-links">${w.links.map(lk => {
       const ext = lk.href && lk.href.startsWith("http") ? ` target="_blank" rel="noopener"` : "";
@@ -519,6 +518,38 @@ function renderCatDetail() {
       ${metrics}${image}${links}
     </article>`;
   }).join("");
+}
+
+/* Honest data-viz for the Amazon store (from real figures) */
+function amazonChart(lang) {
+  const C = 2 * Math.PI * 46;               // donut circumference
+  const profit = 0.20, profLen = C * profit;
+  const t = lang === "zh"
+    ? { cap: "运营数据概览 · 基于真实经营数据，非平台截图", margin: "净利率",
+        rev: "销售额", pro: "净利润", ord: "订单", note: "净利润 = 销售额 × 净利率（约 20%）" }
+    : { cap: "Store performance · from real figures, not a screenshot", margin: "Net margin",
+        rev: "Revenue", pro: "Net profit", ord: "Orders", note: "Net profit = revenue × ~20% margin" };
+  return `<figure class="chart-figure">
+    <figcaption class="chart-cap">📊 ${t.cap}</figcaption>
+    <div class="chart-body">
+      <div class="donut">
+        <svg viewBox="0 0 120 120" role="img" aria-label="${t.margin} 20%">
+          <circle class="donut-track" cx="60" cy="60" r="46"></circle>
+          <circle class="donut-cost" cx="60" cy="60" r="46"
+            stroke-dasharray="${(C - profLen).toFixed(1)} ${profLen.toFixed(1)}" stroke-dashoffset="${(-profLen).toFixed(1)}"></circle>
+          <circle class="donut-profit" cx="60" cy="60" r="46"
+            stroke-dasharray="${profLen.toFixed(1)} ${(C - profLen).toFixed(1)}" stroke-dashoffset="0"></circle>
+        </svg>
+        <div class="donut-center"><b>≈20%</b><span>${t.margin}</span></div>
+      </div>
+      <ul class="chart-stats">
+        <li><span class="cdot cost"></span><span class="cst-l">${t.rev}</span><b>≈£3,500</b></li>
+        <li><span class="cdot profit"></span><span class="cst-l">${t.pro}</span><b>≈£700</b></li>
+        <li><span class="cdot orders"></span><span class="cst-l">${t.ord}</span><b>500+</b></li>
+      </ul>
+    </div>
+    <div class="chart-note">${t.note}</div>
+  </figure>`;
 }
 
 function renderContact() {
@@ -549,31 +580,11 @@ function showView(name, push) {
 }
 
 /* ---- Cursor-following avatar character ---- */
-const AVATAR_SVG = `<svg viewBox="0 0 84 138" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="42" cy="128" rx="20" ry="5" fill="rgba(25,23,19,.12)"/>
-  <path d="M20 40 Q12 84 22 108 L62 108 Q72 84 64 40 Z" fill="#20180f"/>
-  <rect x="34" y="98" width="6.5" height="26" rx="3.2" fill="#2f2b34"/>
-  <rect x="43" y="98" width="6.5" height="26" rx="3.2" fill="#2f2b34"/>
-  <rect x="32" y="118" width="11" height="11" rx="3.5" fill="#a7dbe8"/>
-  <rect x="41" y="118" width="11" height="11" rx="3.5" fill="#a7dbe8"/>
-  <path d="M25 66 Q42 60 59 66 L61 102 Q42 108 23 102 Z" fill="#cba46f"/>
-  <path d="M39 65 L45 65 L44 104 L40 104 Z" fill="#b98f57"/>
-  <rect x="19" y="66" width="7.5" height="28" rx="3.7" fill="#cba46f"/>
-  <g transform="rotate(20 60 64)"><rect x="56.5" y="52" width="7.5" height="26" rx="3.7" fill="#cba46f"/></g>
-  <rect x="37" y="55" width="8" height="12" fill="#f1c9a6"/>
-  <ellipse cx="42" cy="41" rx="20.5" ry="21.5" fill="#f6d5b2"/>
-  <path d="M20.5 41 Q22 19 42 17 Q62 19 63.5 41 Q57 29 42 29 Q27 29 20.5 41 Z" fill="#20180f"/>
-  <circle cx="34.5" cy="43" r="2.5" fill="#2a231e"/>
-  <circle cx="49.5" cy="43" r="2.5" fill="#2a231e"/>
-  <path d="M37 50 Q42 54 47 50" stroke="#b5654a" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <circle cx="31" cy="48" r="2.6" fill="#f5b8a8" opacity=".55"/>
-  <circle cx="53" cy="48" r="2.6" fill="#f5b8a8" opacity=".55"/>
-</svg>`;
 function initAvatar() {
   const el = document.getElementById("avatar-follow");
   if (!el) return;
   if (window.matchMedia("(hover: none)").matches || window.innerWidth <= 720) { el.style.display = "none"; return; }
-  el.innerHTML = AVATAR_SVG;
+  el.innerHTML = `<img src="assets/img/avatar-char.png" alt="" />`;
   let mx = innerWidth / 2, my = innerHeight / 2, ax = mx, ay = my, shown = false, ph = 0;
   addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; if (!shown) { shown = true; el.classList.add("on"); } });
   document.addEventListener("mouseleave", () => { el.classList.remove("on"); shown = false; });

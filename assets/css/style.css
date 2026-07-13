@@ -246,6 +246,26 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
 .contact-methods .val { font-size: 16px; font-weight: 600; color: var(--ink); }
 .dl-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
+/* ---------- Data-viz figure (Amazon) ---------- */
+.chart-figure { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px 20px; margin: 2px 0; }
+.chart-cap { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); margin-bottom: 15px; }
+.chart-body { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.donut { position: relative; width: 116px; height: 116px; flex: 0 0 auto; }
+.donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.donut circle { fill: none; stroke-width: 15; }
+.donut-track { stroke: #e7e2da; }
+.donut-cost { stroke: #c3b1ee; }
+.donut-profit { stroke: #1c8a4e; stroke-linecap: round; }
+.donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.donut-center b { font-size: 23px; color: var(--ink); letter-spacing: -.02em; }
+.donut-center span { font-size: 12px; color: var(--ink-faint); }
+.chart-stats { list-style: none; padding: 0; margin: 0; display: grid; gap: 11px; flex: 1; min-width: 160px; }
+.chart-stats li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink-soft); }
+.chart-stats li b { margin-left: auto; font-size: 18px; color: var(--ink); letter-spacing: -.01em; }
+.cdot { width: 11px; height: 11px; border-radius: 3px; flex: 0 0 auto; }
+.cdot.cost { background: #c3b1ee; } .cdot.profit { background: #1c8a4e; } .cdot.orders { background: var(--gold); }
+.chart-note { font-size: 11.5px; color: var(--ink-faint); margin-top: 13px; }
+
 /* ---------- Multi-view pages ---------- */
 .view { display: none; }
 .view.active { display: block; min-height: 66vh; animation: viewIn .45s ease; }
@@ -256,12 +276,12 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
 
 /* ---------- Cursor-following avatar character ---------- */
 #avatar-follow {
-  position: fixed; top: 0; left: 0; width: 52px; z-index: 54;
+  position: fixed; top: 0; left: 0; width: 62px; z-index: 54;
   pointer-events: none; opacity: 0; transition: opacity .35s ease;
   will-change: transform; transform-origin: center;
 }
 #avatar-follow.on { opacity: 1; }
-#avatar-follow svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 6px 9px rgba(25,23,19,.16)); }
+#avatar-follow img { width: 100%; height: auto; display: block; filter: drop-shadow(0 7px 10px rgba(25,23,19,.18)); }
 
 /* ---------- Responsibilities / Results ---------- */
 .dr { margin: 2px 0; }

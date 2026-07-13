@@ -810,64 +810,65 @@ function initAvatar() {
   })();
 }
 
-/* ---- Interactive balloons (contact) ---- */
-/* Full-screen flower-petal bloom that rains down when you enter Contact */
+/* ---- A few small fireworks that bloom in the background of Contact ---- */
 function initPetals() {
   const canvas = document.getElementById("balloon-canvas");
   const section = document.querySelector('.view[data-view="contact"]');
   if (!canvas || !section) return null;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const ctx = canvas.getContext("2d");
-  const COLORS = ["#f5b6d0", "#c9b6f5", "#f5d99b", "#a9e5c8", "#b6d4f5", "#f5c4a1", "#ff9db8", "#b892f0", "#7ed0b8"];
-  let W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2), petals = [], raf = null;
+  const COLORS = ["#e0684f", "#e8a34b", "#d98cae", "#c98a5a", "#a8536a", "#e9c46a", "#7fb0a0", "#b0728f", "#8a6d9e"];
+  let W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2);
+  let parts = [], pending = [], raf = null, start = 0;
   function resize() {
     W = section.clientWidth; H = section.clientHeight || window.innerHeight;
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  function flower(x, y, s, rot, color, alpha) {
-    ctx.save(); ctx.globalAlpha = alpha; ctx.translate(x, y); ctx.rotate(rot);
-    ctx.fillStyle = color;
-    for (let k = 0; k < 5; k++) { ctx.rotate(Math.PI * 2 / 5); ctx.beginPath(); ctx.ellipse(0, -s * 0.72, s * 0.4, s * 0.72, 0, 0, Math.PI * 2); ctx.fill(); }
-    ctx.fillStyle = "#fff2c2"; ctx.beginPath(); ctx.arc(0, 0, s * 0.32, 0, Math.PI * 2); ctx.fill();
-    ctx.restore();
+  function explode(cx, cy, color) {
+    const n = 26 + (Math.random() * 20 | 0), base = 2 + Math.random() * 2.4;
+    for (let i = 0; i < n; i++) {
+      const a = Math.PI * 2 * i / n + Math.random() * 0.25, sp = base * (0.45 + Math.random());
+      parts.push({ x: cx, y: cy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, color, life: 1, size: 1.4 + Math.random() * 1.7 });
+    }
   }
   function burst() {
     if (reduce) return;
     resize(); if (!W || !H) return;
-    const N = Math.max(90, Math.min(220, Math.round(W / 6)));
-    petals = Array.from({ length: N }, (_, i) => ({
-      x: Math.random() * W,
-      y: -Math.random() * H - 20,                     // staggered above → cascade fills the screen
-      s: 7 + Math.random() * 12,
-      vy: 1.3 + Math.random() * 2.6,
-      sway: Math.random() * 6.28, swayAmp: 12 + Math.random() * 26, swaySpd: 0.01 + Math.random() * 0.03,
-      rot: Math.random() * 6.28, rotSpd: (Math.random() - 0.5) * 0.13,
-      color: COLORS[i % COLORS.length], dead: false
-    }));
+    parts = []; pending = [];
+    const count = 4 + (Math.random() * 3 | 0);           // a few small fireworks
+    for (let k = 0; k < count; k++) {
+      pending.push({ t: k * 300 + Math.random() * 180, cx: W * (0.12 + Math.random() * 0.76), cy: H * (0.1 + Math.random() * 0.42),
+        color: COLORS[(Math.random() * COLORS.length) | 0], fired: false });
+    }
+    start = performance.now();
     if (!raf) loop();
   }
   function loop() {
+    const now = performance.now();
+    for (const p of pending) if (!p.fired && now - start >= p.t) { p.fired = true; explode(p.cx, p.cy, p.color); }
     ctx.clearRect(0, 0, W, H);
+    ctx.lineCap = "round";
     let alive = 0;
-    for (const p of petals) {
-      if (p.dead) continue;
-      p.y += p.vy; p.vy += 0.006; p.sway += p.swaySpd; p.rot += p.rotSpd;
-      const x = p.x + Math.sin(p.sway) * p.swayAmp;
-      let alpha = 1;
-      if (p.y > H - 90) alpha = Math.max(0, (H - p.y) / 90 + 0.1);
-      if (p.y > H + p.s) { p.dead = true; continue; }
+    for (const pt of parts) {
+      if (pt.life <= 0) continue;
+      pt.vy += 0.03; pt.vx *= 0.985; pt.vy *= 0.985;
+      pt.x += pt.vx; pt.y += pt.vy; pt.life -= 0.012;
+      if (pt.life <= 0) continue;
       alive++;
-      flower(x, p.y, p.s, p.rot, p.color, alpha);
+      ctx.globalAlpha = Math.max(0, pt.life) * 0.8;
+      ctx.strokeStyle = pt.color; ctx.lineWidth = pt.size;
+      ctx.beginPath(); ctx.moveTo(pt.x, pt.y); ctx.lineTo(pt.x - pt.vx * 2.2, pt.y - pt.vy * 2.2); ctx.stroke();
     }
-    if (alive > 0) raf = requestAnimationFrame(loop);
-    else { ctx.clearRect(0, 0, W, H); raf = null; petals = []; }
+    ctx.globalAlpha = 1;
+    if (alive > 0 || pending.some(p => !p.fired)) raf = requestAnimationFrame(loop);
+    else { ctx.clearRect(0, 0, W, H); raf = null; parts = []; }
   }
   window.addEventListener("resize", () => { dpr = Math.min(devicePixelRatio || 1, 2); if (raf) resize(); });
   return {
     burst,
-    stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } if (W) ctx.clearRect(0, 0, W, H); petals = []; }
+    stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } if (W) ctx.clearRect(0, 0, W, H); parts = []; pending = []; }
   };
 }
 

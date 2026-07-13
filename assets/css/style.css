@@ -416,7 +416,7 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
 /* ---------- Interactive balloons (contact) ---------- */
 .contact { position: relative; overflow: hidden; min-height: calc(100vh - 64px); }
 .view.contact.active { display: flex; align-items: center; }
-#balloon-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
+#balloon-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .contact .wrap { position: relative; z-index: 1; width: 100%; }
 
 /* ---------- Footer ---------- */

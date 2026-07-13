@@ -293,35 +293,35 @@ function kindOf(w) {
 const UI = {
   zh: {
     navAbout: "关于", navExp: "经历", navContact: "联系",
-    heroRole: "海外市场营销 & 运营",
+    heroRole: "帮品牌把生意做到海外",
     heroSub: "达人营销 · 跨境电商 · 内容增长",
-    heroLede: "KCL 数字媒体一等荣誉毕业，即将入读 LSE。过去两年我一直在做一件事：帮品牌进入并经营海外市场——达人营销、跨境电商、内容运营我都独立做过，也拿到过实打实的结果。",
-    ctaWork: "看我的经历", ctaCV: "下载简历",
-    aboutEyebrow: "关于我", aboutTitle: "数字媒体科班 + 两年海外实战",
-    aboutP1: "我是杨怿涵。本科在 KCL 读数字媒体与文化（一等荣誉），今年入读 LSE。这两年我的实习和项目都围绕一条主线——海外市场的营销与运营：在 Vertex 负责 VOOPOO 英国市场的达人营销，独立运营过 Amazon 英国站，也把一个小红书账号从 0 做到 8,000+。",
-    aboutP2: "我习惯用数据和 AI 工具做市场调研、竞品分析和达人筛选，一个项目能从调研、方案到执行自己独立扛下来，团队里通常是牵头的那个（MBTI 是 ENTJ，天生爱定目标、带着大家往前推）。英语是我的工作语言，所以我最想做出海方向的岗位。",
-    expEyebrow: "经历 & 作品", expTitle: "按类型看，点一下展开",
-    expLead: "左边选一类，右边看具体做了什么；每段下面圈出的是这段经历体现的能力。",
+    heroLede: "达人营销、跨境电商、内容运营——这三件事我都亲手做过，也都做出了结果：280 万+ 曝光、500+ 订单、两个月把一个账号从 0 带到 8,000+ 粉。KCL 数字媒体一等毕业，下一站 LSE。",
+    ctaWork: "看我做过什么", ctaCV: "下载简历",
+    aboutEyebrow: "关于我", aboutTitle: "把海外项目独立做出结果的人",
+    aboutP1: "我是杨怿涵。这两年我没只待在课堂里：在 Vertex，我操盘 VOOPOO 的英国达人营销；我自己开了一家 Amazon 英国店，从选品、定价到广告全都一手做；还把一个小红书账号从 0 带到 8,000+ 粉，跑出过 87 万观看的爆款。",
+    aboutP2: "我做事的路子很清楚——先用数据和 AI 工具把市场和用户摸透，再动手，一个人也能从头扛到尾。在团队里，我通常是那个定方向、拉着大家往前跑的人（是的，标准 ENTJ）。英语几乎是我的第二母语，所以「出海」是我最想去的方向。",
+    expEyebrow: "经历 & 作品", expTitle: "我做过什么 · 能为你做什么",
+    expLead: "下面每一段，都是我真刀真枪做出来、也拿到过结果的。挑一类，点开看我具体怎么做的。",
     timelineEyebrow: "时间线", timelineTitle: "教育 · 实习 · 项目",
-    contactTitle: "如果有合适的机会，欢迎找我",
-    contactLead: "在找一个能独立把海外项目做起来的人？这就是我。",
+    contactTitle: "聊聊？我随时都在",
+    contactLead: "如果你需要一个能独立把海外项目做起来、还能带着团队往前跑的人——给我发条消息就好。",
     lblEmail: "邮箱", lblPhoneCN: "电话（中国）", lblPhoneUK: "电话（英国）",
     dlEN: "下载简历（英文）", dlCN: "下载简历（中文）"
   },
   en: {
     navAbout: "About", navExp: "Experience", navContact: "Contact",
-    heroRole: "Overseas Marketing & Operations",
+    heroRole: "I help brands take their business overseas",
     heroSub: "Influencer marketing · Cross-border e-commerce · Content growth",
-    heroLede: "First-Class Honours in Digital Media from KCL, heading to LSE. For the past two years I've been doing one thing: helping brands enter and grow in overseas markets — influencer marketing, cross-border e-commerce and content operations, all hands-on, all with real results.",
-    ctaWork: "See my work", ctaCV: "Download CV",
-    aboutEyebrow: "About", aboutTitle: "Digital-media trained, two years of overseas work",
-    aboutP1: "I'm Eve Yang. I studied Digital Media & Culture at KCL (First-Class Honours) and start at LSE this year. For two years my internships and projects have followed one thread — marketing and operations for overseas markets: VOOPOO's UK influencer marketing at Vertex, running a UK Amazon store solo, and growing a Xiaohongshu account from 0 to 8,000+.",
-    aboutP2: "I use data and AI tools for market research, competitor analysis and creator screening, and can carry a project from research to plan to execution on my own — usually the one leading the team (I'm an ENTJ, wired to set the goal and push the group toward it). English is my working language, so overseas-facing roles are where I want to be.",
-    expEyebrow: "Experience & Work", expTitle: "Browse by type — tap to open",
-    expLead: "Pick a category on the left, see what I actually did on the right; the bullets under each are the skills it shows.",
+    heroLede: "Influencer marketing, cross-border e-commerce, content operations — I've done all three myself, and each one delivered: 2.8M+ impressions, 500+ orders, one account grown from 0 to 8,000+ in two months. First-Class in Digital Media from KCL; LSE next.",
+    ctaWork: "See what I've done", ctaCV: "Download CV",
+    aboutEyebrow: "About", aboutTitle: "Someone who runs an overseas project and brings back results",
+    aboutP1: "I'm Eve Yang. These two years I didn't just sit in lectures: at Vertex I ran VOOPOO's UK influencer marketing; I opened my own Amazon UK store and did everything from sourcing and pricing to ads; and I grew a Xiaohongshu account from 0 to 8,000+, with a top post at 870k views.",
+    aboutP2: "The way I work is clear — understand the market and users first with data and AI tools, then act, and I can carry it end to end on my own. On a team I'm usually the one setting the direction and pulling everyone forward (yes, a textbook ENTJ). My English is near-native, so going global is exactly where I want to be.",
+    expEyebrow: "Experience & Work", expTitle: "What I've done · what I can do for you",
+    expLead: "Every one below is real, hands-on work that got results. Pick a category and open it to see exactly how I did it.",
     timelineEyebrow: "Timeline", timelineTitle: "Education · Internships · Projects",
-    contactTitle: "If there's a good fit, get in touch",
-    contactLead: "Looking for someone who can take an overseas project and make it work on their own? That's me.",
+    contactTitle: "Let's talk — I'm around",
+    contactLead: "If you need someone who can run an overseas project solo and pull a team along, just send me a message.",
     lblEmail: "Email", lblPhoneCN: "Phone (China)", lblPhoneUK: "Phone (UK)",
     dlEN: "Download CV (EN)", dlCN: "Download CV (中文)"
   }
@@ -469,6 +469,95 @@ function observeReveals() {
     }), 1200);
 }
 
+/* ---- Lights-off flashlight mode ---- */
+function initLights() {
+  const btn = document.getElementById("lights-btn");
+  const hint = document.getElementById("lights-hint");
+  if (!btn) return;
+  const setHint = () => { hint.textContent = L() === "zh" ? "移动鼠标照亮 · 再点灯泡开灯" : "Move your cursor to light the way · click the bulb again"; };
+  const move = (e) => {
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const y = e.touches ? e.touches[0].clientY : e.clientY;
+    document.documentElement.style.setProperty("--mx", x + "px");
+    document.documentElement.style.setProperty("--my", y + "px");
+  };
+  btn.addEventListener("click", () => {
+    const on = document.body.classList.toggle("lights-off");
+    btn.textContent = on ? "🔦" : "💡";
+    if (on) { setHint(); window.addEventListener("mousemove", move); window.addEventListener("touchmove", move, { passive: true }); }
+    else { window.removeEventListener("mousemove", move); window.removeEventListener("touchmove", move); }
+  });
+}
+
+/* ---- Interactive balloons (contact section) ---- */
+function initBalloons() {
+  const canvas = document.getElementById("balloon-canvas");
+  const section = document.getElementById("contact");
+  if (!canvas || !section) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const ctx = canvas.getContext("2d");
+  const COLORS = ["#c9b6f5", "#f5b6d0", "#f5d99b", "#a9e5c8", "#b6d4f5"];
+  let W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let balloons = [], pointer = { x: -999, y: -999, on: false }, raf = null, t = 0;
+
+  function resize() {
+    W = section.clientWidth; H = section.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + "px"; canvas.style.height = H + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.max(6, Math.min(12, Math.round(W / 130)));
+    balloons = Array.from({ length: n }, (_, i) => spawn(i, true));
+  }
+  function spawn(i, initial) {
+    const r = 16 + (i * 37 % 16);
+    return { baseX: 24 + ((i * 97) % Math.max(1, W - 48)), amp: 8 + (i * 13 % 16),
+      phase: (i * 1.7) % 6.28, r, x: 0,
+      y: initial ? (H * (i / 10) + (i * 53 % 80)) : H + r + 30,
+      vy: 0.25 + (i % 5) * 0.09, color: COLORS[i % COLORS.length] };
+  }
+  function draw(b) {
+    ctx.save(); ctx.globalAlpha = 0.9;
+    ctx.strokeStyle = "rgba(120,110,140,0.3)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(b.x, b.y + b.r);
+    ctx.quadraticCurveTo(b.x + Math.sin(b.phase) * 6, b.y + b.r + 16, b.x, b.y + b.r + 28); ctx.stroke();
+    ctx.fillStyle = b.color;
+    ctx.beginPath(); ctx.ellipse(b.x, b.y, b.r * 0.82, b.r, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = 0.4; ctx.fillStyle = "#fff";
+    ctx.beginPath(); ctx.ellipse(b.x - b.r * 0.28, b.y - b.r * 0.34, b.r * 0.15, b.r * 0.25, -0.4, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = 0.9; ctx.fillStyle = b.color;
+    ctx.beginPath(); ctx.moveTo(b.x - 3, b.y + b.r); ctx.lineTo(b.x + 3, b.y + b.r); ctx.lineTo(b.x, b.y + b.r + 5); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  function tick() {
+    ctx.clearRect(0, 0, W, H); t += 1;
+    for (const b of balloons) {
+      b.y -= b.vy; b.phase += 0.012;
+      b.x = b.baseX + Math.sin(b.phase) * b.amp;
+      if (pointer.on) {
+        const dx = b.x - pointer.x, dy = b.y - pointer.y, d = Math.hypot(dx, dy);
+        if (d < 130 && d > 0.1) { const f = (130 - d) / 130; const a = Math.atan2(dy, dx);
+          b.baseX += Math.cos(a) * f * 3.4; b.y += Math.sin(a) * f * 3.4; }
+      }
+      b.baseX = Math.max(20, Math.min(W - 20, b.baseX));
+      if (b.y < -b.r - 34) Object.assign(b, spawn((Math.random() * 1000) | 0, false));
+    }
+    balloons.forEach(draw);
+    raf = requestAnimationFrame(tick);
+  }
+  section.addEventListener("mousemove", (e) => {
+    const rect = section.getBoundingClientRect();
+    pointer.x = e.clientX - rect.left; pointer.y = e.clientY - rect.top; pointer.on = true;
+  });
+  section.addEventListener("mouseleave", () => { pointer.on = false; });
+  window.addEventListener("resize", () => { dpr = Math.min(window.devicePixelRatio || 1, 2); resize(); });
+  // start only when section near viewport (perf)
+  const io2 = new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting) { if (!raf) { resize(); tick(); } }
+    else if (raf) { cancelAnimationFrame(raf); raf = null; }
+  }), { threshold: 0.02 });
+  io2.observe(section);
+}
+
 /* ---- Init ---- */
 document.addEventListener("DOMContentLoaded", () => {
   render();
@@ -481,6 +570,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const links = document.getElementById("nav-links");
   menuBtn.addEventListener("click", () => links.classList.toggle("open"));
   links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => links.classList.remove("open")));
+
+  initLights();
+  initBalloons();
 
   // Playful click ripple on interactive elements
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

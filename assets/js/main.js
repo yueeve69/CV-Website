@@ -255,13 +255,13 @@ const DATA = {
         items: [
           { full: "assets/img/notes/full-1.jpg",
             zh: "非要说我拉腿？承认别人优秀就那么难？", en: "\"So hard to admit others look good?\"",
-            views: "120万", viewsEn: "1.2M", shares: "3,280", href: "http://xhslink.com/o/2umRm5qB0a2" },
+            views: "120万", viewsEn: "1.2M", likes: "2万+", likesEn: "20k+", comments: "1万2", commentsEn: "12k", shares: "3k+", href: "http://xhslink.com/o/3nDtJpMrRgr" },
           { full: "assets/img/notes/full-2.jpg",
             zh: "中国人您好，我关注你们很久了", en: "\"Hello Chinese friends…\"",
-            views: "87.9万", viewsEn: "879k", likes: "4万+", likesEn: "40k+", comments: "1万+", commentsEn: "10k+", shares: "4,395", href: "http://xhslink.com/o/8SICvD7QGsU" },
+            views: "87.9万", viewsEn: "879k", likes: "4万+", likesEn: "40k+", comments: "1万+", commentsEn: "10k+", shares: "4k+", href: "http://xhslink.com/o/2umRm5qB0a2" },
           { full: "assets/img/notes/full-3.jpg",
             zh: "不小心把自己的照片发出来了喵", en: "\"Oops, posted my own photo\"",
-            views: "5.7万", viewsEn: "57k", shares: "822", href: "http://xhslink.com/o/3nDtJpMrRgr" }
+            views: "5.7万", viewsEn: "57k", likes: "4k+", likesEn: "4k+", comments: "1k+", commentsEn: "1k+", shares: "800+", href: "http://xhslink.com/o/8SICvD7QGsU" }
         ],
         comments: [
           { src: "assets/img/notes/comment-1.jpg", zh: "热评获 1.7万赞", en: "Top comment · 17k likes" },
@@ -311,9 +311,9 @@ const DATA = {
                  en: "Edited and laid out content for the official WeChat account. A few articles below (tap to read)." },
         items: [
           { full: "assets/img/wechat/article-1.jpg", zh: "100天冲刺启动！全运火炬即将重磅首秀！", en: "\"100-day countdown: the National Games torch debut\"",
-            meta: "深视体育 · 2025.08", href: "https://mp.weixin.qq.com/s/dSRuz-QuXVR35JCJ7AnX0w" },
+            meta: "深视体育 · 2025.08", href: "https://mp.weixin.qq.com/s/e3dX9PW8ayI7i_y8piqUVw" },
           { full: "assets/img/wechat/article-2.jpg", zh: "八段锦专场 · 职场人午休静修充电术", en: "\"Baduanjin session · a lunchtime recharge for office workers\"",
-            meta: "深视体育 · 原创 · 2025.08", href: "https://mp.weixin.qq.com/s/e3dX9PW8ayI7i_y8piqUVw" }
+            meta: "深视体育 · 原创 · 2025.08", href: "https://mp.weixin.qq.com/s/dSRuz-QuXVR35JCJ7AnX0w" }
         ]
       }
     },
@@ -453,6 +453,7 @@ const CONTACT = {
   email: "yueeve69@163.com",
   phoneCN: "+86 156 6344 8888",
   phoneUK: "+44 7436 445151",
+  wechat: "yueeve6",
   linkedin: "https://www.linkedin.com/in/yihan-yang-247a3232b",
   linkedinLabel: "in/yihan-yang",
   cvEN: DOCS + "Eve_Yang_CV_EN.pdf",
@@ -667,6 +668,7 @@ function renderContact() {
   const t = UI[L()];
   document.getElementById("contact-methods").innerHTML = `
     <a href="mailto:${CONTACT.email}"><span class="label">${t.lblEmail}</span><span class="val">${CONTACT.email}</span></a>
+    <span><span class="label">${L() === "zh" ? "微信" : "WeChat"}</span><span class="val">${CONTACT.wechat}</span></span>
     <a href="${CONTACT.linkedin}" target="_blank" rel="noopener"><span class="label">LinkedIn</span><span class="val">${CONTACT.linkedinLabel}</span></a>
     <a href="tel:${CONTACT.phoneCN.replace(/\s/g, "")}"><span class="label">${t.lblPhoneCN}</span><span class="val">${CONTACT.phoneCN}</span></a>
     <a href="tel:${CONTACT.phoneUK.replace(/\s/g, "")}"><span class="label">${t.lblPhoneUK}</span><span class="val">${CONTACT.phoneUK}</span></a>`;
@@ -677,7 +679,7 @@ function renderContact() {
 
 /* ---- View router ---- */
 const VIEWS = ["home", "about", "education", "experience", "contact"];
-let balloons = null;
+let petalFx = null;
 function showView(name, push) {
   if (!VIEWS.includes(name)) name = "home";
   currentView = name;
@@ -685,8 +687,8 @@ function showView(name, push) {
   document.querySelectorAll("[data-view]").forEach(a =>
     a.classList.toggle("nav-current", a.dataset.view === name && a.closest(".nav-links")));
   window.scrollTo({ top: 0, behavior: "auto" });
-  if (name === "contact" && balloons) balloons.start();
-  else if (balloons) balloons.stop();
+  if (name === "contact" && petalFx) requestAnimationFrame(() => petalFx.burst());
+  else if (petalFx) petalFx.stop();
   if (push && location.hash !== "#" + name) history.replaceState(null, "", "#" + name);
 }
 
@@ -720,95 +722,63 @@ function initAvatar() {
 }
 
 /* ---- Interactive balloons (contact) ---- */
-function initBalloons() {
+/* Full-screen flower-petal bloom that rains down when you enter Contact */
+function initPetals() {
   const canvas = document.getElementById("balloon-canvas");
   const section = document.querySelector('.view[data-view="contact"]');
   if (!canvas || !section) return null;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return null;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const ctx = canvas.getContext("2d");
-  const COLORS = ["#c9b6f5", "#f5b6d0", "#f5d99b", "#a9e5c8", "#b6d4f5", "#f5c4a1"];
-  let W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2);
-  let items = [], raf = null;
-  const p = { x: -999, y: -999, px: -999, py: -999, on: false };
-  const G = 0.14, BOUNCE = -0.34, AIR = 0.992;
+  const COLORS = ["#f5b6d0", "#c9b6f5", "#f5d99b", "#a9e5c8", "#b6d4f5", "#f5c4a1", "#ff9db8", "#b892f0", "#7ed0b8"];
+  let W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2), petals = [], raf = null;
   function resize() {
-    W = section.clientWidth; H = section.clientHeight;
-    if (!W || !H) return;
+    W = section.clientWidth; H = section.clientHeight || window.innerHeight;
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.max(90, Math.min(190, Math.round(W / 9)));
-    items = Array.from({ length: n }, (_, i) => {
-      const r = 18 + (i * 37 % 20);           // bigger: 18–38px
-      return { r, color: COLORS[i % COLORS.length], phase: (i * 1.3) % 6.28,
-        x: r + Math.random() * (W - 2 * r), y: H - r - (i % 18) * 32 - Math.random() * 40,
-        vx: 0, vy: 0, sleep: false, rest: 0 };
-    });
-    // pre-settle into a static pile, then freeze so nothing keeps moving
-    for (let k = 0; k < 150; k++) step(false);
-    for (const b of items) { b.vx = 0; b.vy = 0; b.sleep = true; }
   }
-  function step(interactive) {
-    const pvx = p.x - p.px, pvy = p.y - p.py; p.px = p.x; p.py = p.y;
-    for (const b of items) {
-      if (interactive && p.on) {                 // cursor "kicks" balloons awake
-        const dx = b.x - p.x, dy = b.y - p.y, d = Math.hypot(dx, dy), R = b.r + 72;
-        if (d < R) { const f = (R - d) / R, a = Math.atan2(dy, dx);
-          b.vx += Math.cos(a) * f * 2.8 + pvx * 0.16 * f;
-          b.vy += Math.sin(a) * f * 2.8 + pvy * 0.16 * f - f * 2.4;
-          b.sleep = false; b.rest = 0; }
-      }
-      if (b.sleep) continue;                      // settled balloons stay put
-      b.vy += G; b.vx *= AIR; b.vy *= AIR; b.phase += 0.03;
-      b.x += b.vx; b.y += b.vy;
-      if (b.x < b.r) { b.x = b.r; b.vx *= -0.5; }
-      if (b.x > W - b.r) { b.x = W - b.r; b.vx *= -0.5; }
-      if (b.y > H - b.r) { b.y = H - b.r; b.vy *= BOUNCE; b.vx *= 0.8; }
-      if (b.y < b.r) { b.y = b.r; b.vy *= -0.4; }
-      if (b.y > H - b.r - 1 && Math.abs(b.vx) < 0.25 && Math.abs(b.vy) < 0.5) {
-        if (++b.rest > 16) { b.sleep = true; b.vx = 0; b.vy = 0; }
-      } else b.rest = 0;
-    }
-    for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
-      const a = items[i], c = items[j];
-      if (a.sleep && c.sleep) continue;
-      const dx = c.x - a.x, dy = c.y - a.y, d = Math.hypot(dx, dy), mn = a.r + c.r - 2;
-      if (d > 0 && d < mn) { const o = (mn - d) / d * 0.5; a.x -= dx * o; a.y -= dy * o; c.x += dx * o; c.y += dy * o;
-        a.sleep = false; c.sleep = false; a.rest = 0; c.rest = 0; }
-    }
-  }
-  function draw(b) {
-    ctx.save(); ctx.globalAlpha = 0.92;
-    ctx.strokeStyle = "rgba(120,110,140,0.28)"; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(b.x, b.y + b.r);
-    ctx.quadraticCurveTo(b.x + Math.sin(b.phase) * 5, b.y + b.r + 14, b.x + Math.sin(b.phase) * 2, b.y + b.r + 26); ctx.stroke();
-    ctx.fillStyle = b.color;
-    ctx.beginPath(); ctx.ellipse(b.x, b.y, b.r * 0.82, b.r, 0, 0, Math.PI * 2); ctx.fill();
-    ctx.globalAlpha = 0.42; ctx.fillStyle = "#fff";
-    ctx.beginPath(); ctx.ellipse(b.x - b.r * 0.28, b.y - b.r * 0.34, b.r * 0.15, b.r * 0.25, -0.4, 0, Math.PI * 2); ctx.fill();
-    ctx.globalAlpha = 0.92; ctx.fillStyle = b.color;
-    ctx.beginPath(); ctx.moveTo(b.x - 3, b.y + b.r); ctx.lineTo(b.x + 3, b.y + b.r); ctx.lineTo(b.x, b.y + b.r + 5); ctx.closePath(); ctx.fill();
+  function flower(x, y, s, rot, color, alpha) {
+    ctx.save(); ctx.globalAlpha = alpha; ctx.translate(x, y); ctx.rotate(rot);
+    ctx.fillStyle = color;
+    for (let k = 0; k < 5; k++) { ctx.rotate(Math.PI * 2 / 5); ctx.beginPath(); ctx.ellipse(0, -s * 0.72, s * 0.4, s * 0.72, 0, 0, Math.PI * 2); ctx.fill(); }
+    ctx.fillStyle = "#fff2c2"; ctx.beginPath(); ctx.arc(0, 0, s * 0.32, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
   }
-  function tick() {
-    ctx.clearRect(0, 0, W, H);
-    step(true);
-    items.forEach(draw);
-    raf = requestAnimationFrame(tick);
+  function burst() {
+    if (reduce) return;
+    resize(); if (!W || !H) return;
+    const N = Math.max(90, Math.min(220, Math.round(W / 6)));
+    petals = Array.from({ length: N }, (_, i) => ({
+      x: Math.random() * W,
+      y: -Math.random() * H - 20,                     // staggered above → cascade fills the screen
+      s: 7 + Math.random() * 12,
+      vy: 1.3 + Math.random() * 2.6,
+      sway: Math.random() * 6.28, swayAmp: 12 + Math.random() * 26, swaySpd: 0.01 + Math.random() * 0.03,
+      rot: Math.random() * 6.28, rotSpd: (Math.random() - 0.5) * 0.13,
+      color: COLORS[i % COLORS.length], dead: false
+    }));
+    if (!raf) loop();
   }
-  const setPtr = (e) => {
-    const rect = section.getBoundingClientRect();
-    const cx = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-    const cy = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
-    if (!p.on) { p.px = cx; p.py = cy; } p.x = cx; p.y = cy; p.on = true;
-  };
-  section.addEventListener("mousemove", setPtr);
-  section.addEventListener("touchmove", setPtr, { passive: true });
-  section.addEventListener("mouseleave", () => { p.on = false; });
-  addEventListener("resize", () => { dpr = Math.min(devicePixelRatio || 1, 2); if (raf) resize(); });
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    let alive = 0;
+    for (const p of petals) {
+      if (p.dead) continue;
+      p.y += p.vy; p.vy += 0.006; p.sway += p.swaySpd; p.rot += p.rotSpd;
+      const x = p.x + Math.sin(p.sway) * p.swayAmp;
+      let alpha = 1;
+      if (p.y > H - 90) alpha = Math.max(0, (H - p.y) / 90 + 0.1);
+      if (p.y > H + p.s) { p.dead = true; continue; }
+      alive++;
+      flower(x, p.y, p.s, p.rot, p.color, alpha);
+    }
+    if (alive > 0) raf = requestAnimationFrame(loop);
+    else { ctx.clearRect(0, 0, W, H); raf = null; petals = []; }
+  }
+  window.addEventListener("resize", () => { dpr = Math.min(devicePixelRatio || 1, 2); if (raf) resize(); });
   return {
-    start() { if (raf) return; resize(); if (W && H) tick(); },
-    stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+    burst,
+    stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } if (W) ctx.clearRect(0, 0, W, H); petals = []; }
   };
 }
 
@@ -816,11 +786,10 @@ function initBalloons() {
 document.addEventListener("DOMContentLoaded", () => {
   render();
   initAvatar();
-  balloons = initBalloons();
+  petalFx = initPetals();
 
   document.querySelectorAll(".lang-toggle button").forEach(b => b.addEventListener("click", () => {
     currentLang = b.dataset.lang; localStorage.setItem("eve-lang", currentLang); render();
-    if (currentView === "contact" && balloons) balloons.start();
   }));
 
   document.querySelectorAll("a[data-view]").forEach(a => a.addEventListener("click", (e) => {

@@ -144,6 +144,27 @@
   .product-split .pimg img{width:100%;height:100%;object-fit:cover;display:block}
   .product-split .pcap{font-size:10px;color:var(--muted);text-align:center;padding:8px 6px;line-height:1.5}
 
+  /* aesop: objective + campaign plan + influencers */
+  .objective{background:rgba(200,156,133,.16);border:1px solid var(--line);border-radius:11px;
+    padding:14px 17px;font-size:11.5px;color:#5a463d;line-height:1.8;margin-top:4px}
+  .objective b{color:var(--accent);font-weight:700}
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+  .plan{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:17px 15px;
+    box-shadow:0 8px 20px rgba(89,46,46,.06)}
+  .plan .pnum{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
+    border-radius:50%;background:var(--accent);color:#fbeee4;font-size:15px;margin-bottom:11px}
+  .plan h5{font-size:13px;color:var(--accent-deep);margin-bottom:9px;line-height:1.3}
+  .plan p{font-size:10.5px;line-height:1.72;color:#6a564c}
+  .plan p em{font-style:italic;color:var(--accent);font-weight:600}
+  .inf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+  .inf{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 15px;
+    box-shadow:0 8px 20px rgba(89,46,46,.06)}
+  .inf .nm{font-size:15px;color:var(--accent-deep);line-height:1.25}
+  .inf .hd{font-size:10.5px;color:var(--accent-light);margin:4px 0 10px}
+  .inf .fol{display:inline-block;font-size:10px;background:var(--accent);color:#fbeee4;
+    padding:3px 10px;border-radius:11px;margin-bottom:11px;font-weight:600;letter-spacing:.03em}
+  .inf p{font-size:10.5px;line-height:1.68;color:#6a564c}
+
   /* personas */
   .personas{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
   .persona{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 16px;
@@ -509,7 +530,7 @@
   </div>
 </section>
 
-<!-- ============ CASE 05 · AESOP ============ -->
+<!-- ============ CASE 05 · AESOP (page 1: campaign plan) ============ -->
 <section class="page">
   <div class="flow">
     <div class="case-head">
@@ -521,47 +542,95 @@
       </div>
     </div>
 
-    <p class="summary">为 Aesop 英国市场制定完整数字营销策略，并将调研结论转化为可落地的商业建议——从「受众分析」到「营销落地」的一次完整推演。</p>
+    <p class="summary">为 Aesop 英国市场制定完整数字营销 Campaign：先用 PESTLE / SWOT 做受众与情境分析，再落地为「社媒 + 达人 + 邮件」三大工具的整合方案，全程契合品牌高端、非硬广的调性。</p>
 
-    <div class="tags">
-      <span class="tag">PESTLE / SWOT 分析</span>
-      <span class="tag">用户画像 Persona</span>
-      <span class="tag">多渠道营销策略</span>
-      <span class="tag">调研结论转化</span>
-      <span class="tag">品牌调性把控</span>
-    </div>
+    <div class="objective"><b>Campaign 目标 &amp; 受众　</b>锁定英国 25–34 岁、年收入约 £30–40k、重视品质与社会责任的女性客群；以提升品牌认知与「考虑度」为主、而非短期促销，引导消费者做出更有信息、更从容的购买决策。</div>
 
-    <div class="two-col">
-      <div class="block duties">
-        <h4>第一阶段 · 受众 &amp; 情境分析</h4>
-        <ul>
-          <li>以 PESTLE、SWOT 框架分析 Aesop 在英国市场的处境</li>
-          <li>从经济、社会、技术等维度输出受众洞察</li>
-          <li>锁定 25–34 岁、年收入约 £30–40k 的都市年轻女性目标客群</li>
-        </ul>
+    <div class="ex-label" style="margin-top:18px">Campaign Plan · 三大营销工具</div>
+    <div class="plan-grid">
+      <div class="plan">
+        <span class="pnum serif">1</span>
+        <h5>社交媒体营销 · Instagram</h5>
+        <p>5 月发布 3 组极简风图文：①科普肤质、引导预约免费到店咨询；②按换季肤质推荐产品；③以 <em>#AesopSkinCheck</em> 征集 UGC，预约咨询享面护 8 折。选 Instagram：图片导向，英国 25–34 岁用户占 33.3%。</p>
       </div>
-      <div class="block duties">
-        <h4>第二阶段 · 营销策略落地</h4>
-        <ul>
-          <li>制定社媒、达人与邮件三大数字营销策略</li>
-          <li>明确各渠道的执行方式、优劣势与伦理边界</li>
-          <li>将调研结论转化为品牌可落地、不破坏调性的商业动作</li>
-        </ul>
+      <div class="plan">
+        <span class="pnum serif">2</span>
+        <h5>达人营销 · Influencer</h5>
+        <p>精选生活方式 / 自我关怀类创作者，产出软性、体验式内容——把 Aesop 自然融入日常护肤 routine，并记录到店咨询与面护体验，衔接线上 campaign 与线下门店；不做硬广、不用 before/after。</p>
+      </div>
+      <div class="plan">
+        <span class="pnum serif">3</span>
+        <h5>邮件营销 · Email</h5>
+        <p>预约后发确认邮件降低不确定感；咨询后用 AI / CRM（Salesforce、HubSpot）发个性化跟进——按咨询结果推荐 routine 与护肤建议，强化转化，全程遵守 GDPR。</p>
       </div>
     </div>
 
-    <div class="block results" style="margin-top:16px">
-      <h4>工作成果</h4>
-      <ul>
-        <li>形成一份可支撑营销策略的受众与情境分析报告</li>
-        <li>输出一套以价值内容切入、非硬广的整合营销方案</li>
-        <li>在「调研结论转化为商业应用建议」上获授课老师肯定</li>
-      </ul>
-    </div>
-
-    <div class="context"><b>能力亮点</b>这一项目最能体现我「会做调研、也会把调研变成能落地的商业方案」——正是营销策划岗的核心能力。完整方案与报告已收录于作品集 PDF。</div>
+    <div class="context"><b>能力亮点</b>从受众分析（PESTLE / SWOT）到三大工具落地，完整推演一套「以价值内容切入、非硬广」的整合营销方案，并在「调研结论转化为商业应用建议」上获授课老师肯定——正是营销策划岗的核心能力。</div>
     <div class="brandmark">Eve Yang · Portfolio</div>
-    <div class="page-tag">Case 05 · Marketing</div>
+    <div class="page-tag">Case 05 · Campaign Plan</div>
+  </div>
+</section>
+
+<!-- ============ CASE 05 · AESOP (page 2: influencer selection) ============ -->
+<section class="page">
+  <div class="flow">
+    <div class="case-head">
+      <div class="case-no serif">05</div>
+      <div>
+        <div class="kicker">Aesop UK · 达人营销</div>
+        <h2>精选达人 &amp; 筛选逻辑</h2>
+        <div class="period">Influencer selection &amp; rationale</div>
+      </div>
+    </div>
+
+    <p class="summary">不只找美妆达人，而是围绕品牌调性与目标客群，精选 3 位「生活方式 × 护肤」创作者，用软性体验式内容自然植入 Aesop。</p>
+
+    <div class="ex-label" style="margin-top:6px">精选达人 · 例子（Table 1）</div>
+    <div class="inf-grid">
+      <div class="inf">
+        <div class="nm serif">Linnea Levoskin</div>
+        <div class="hd">@linnealevoskin</div>
+        <span class="fol">87.6k 粉丝</span>
+        <p>生活方式 &amp; 护肤创作者，主打极简护肤 routine、自然美学与慢生活、正念自我关怀。</p>
+      </div>
+      <div class="inf">
+        <div class="nm serif">Akhalia Fearon</div>
+        <div class="hd">@akhalia.fearon</div>
+        <span class="fol">69.9k 粉丝</span>
+        <p>健康 &amp; 生活方式创作者，分享日常 routine 与发型，强调真实感与平衡的美妆生活方式。</p>
+      </div>
+      <div class="inf">
+        <div class="nm serif">Yezi.Beauty</div>
+        <div class="hd">@yezi.beauty</div>
+        <span class="fol">351k 粉丝</span>
+        <p>护肤向创作者，产出产品测评、护肤 routine 与知识，聚焦成分认知与日常肌肤问题。</p>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:18px">
+      <div class="block duties">
+        <h4>筛选逻辑</h4>
+        <ul>
+          <li>契合品牌调性：极简风格、平静语调，呼应可持续与正念消费的价值观</li>
+          <li>不止美妆达人：纳入生活方式 / 健康类创作者，把 Aesop 放进更大的生活方式语境</li>
+          <li>年龄贴近：均落在 25–34 岁核心客群，更具相关性与代入感</li>
+          <li>多元背景：达人种族背景多元，强化「适合不同肤质与人群」的品牌形象</li>
+        </ul>
+      </div>
+      <div class="block results">
+        <h4>合作方式 &amp; 目标</h4>
+        <ul>
+          <li>软性体验式内容，将产品自然融入日常，而非直接促销</li>
+          <li>记录到店咨询 / 面护体验，衔接线上 campaign 与线下门店</li>
+          <li>合作明确标注广告，保证透明与真实</li>
+          <li>以提升可见度、建立长期关系为主，而非立即带货</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="context"><b>为什么这样选</b>「达人筛选」最能体现营销策划的判断力——把品牌定位、目标客群、内容伦理一起纳入考量，而不是只看粉丝量。完整方案与达人清单已收录于作品集 PDF。</div>
+    <div class="brandmark">Eve Yang · Portfolio</div>
+    <div class="page-tag">Case 05 · Influencer</div>
   </div>
 </section>
 
